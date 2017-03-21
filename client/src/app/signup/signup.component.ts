@@ -70,7 +70,12 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     // reset login status
-    this.authenticationService.logout();
+    //this.authenticationService.logout();
+    if (localStorage.getItem('token') && localStorage.getItem('token') != 'undefined') {
+            // logged in so return true
+           // not logged in so redirect to login page with the return url
+          this.router.navigate(['/home']);
+        }
   }
 
 }

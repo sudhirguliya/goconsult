@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 
 import { routing } from './app.routes';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { routing } from './app.routes';
     LoginComponent,
     HomeComponent,
     SignupComponent,
-    AlertComponent
+    AlertComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

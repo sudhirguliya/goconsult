@@ -36,11 +36,19 @@ export class LoginComponent implements OnInit {
     }
     ngOnInit() {
       // reset login status
-      this.authenticationService.logout();
+      //this.authenticationService.logout();
 
       // get return url from route parameters or default to '/'
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'home';
-      console.log(this.returnUrl);
+      //console.log(this.returnUrl);
+
+      if (localStorage.getItem('token') && localStorage.getItem('token') != 'undefined') {
+            // logged in so return true
+           // not logged in so redirect to login page with the return url
+          this.router.navigate(['/home']);
+        }
+
+        
     }
 
   // login(event, email, password) {
