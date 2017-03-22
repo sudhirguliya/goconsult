@@ -26,7 +26,7 @@ module.exports = {
       unique: true
     },
 
-    /*firstName: {
+    firstName: {
       type: 'string',
       defaultsTo: ''
     },
@@ -36,7 +36,7 @@ module.exports = {
       defaultsTo: ''
     },
 
-    photo: {
+    /*photo: {
       type: 'string',
       defaultsTo: '',
       url: true

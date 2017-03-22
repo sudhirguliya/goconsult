@@ -31,121 +31,121 @@ module.exports = {
      * Redis configuration
      * @type {Object}
      */
-    redis: {
-      adapter: 'sails-redis',
-      port: 6379,
-      host: 'localhost',
-      password: '',
-      database: 'goconsultdb',
-      options: {
-        parser: 'hiredis',
-        return_buffers: false,
-        detect_buffers: false,
-        socket_nodelay: true,
-        no_ready_check: false,
-        enable_offline_queue: true
-      }
-    },
+    // redis: {
+    //   adapter: 'sails-redis',
+    //   port: 6379,
+    //   host: 'localhost',
+    //   password: '',
+    //   database: 'goconsultdb',
+    //   options: {
+    //     parser: 'hiredis',
+    //     return_buffers: false,
+    //     detect_buffers: false,
+    //     socket_nodelay: true,
+    //     no_ready_check: false,
+    //     enable_offline_queue: true
+    //   }
+    // },
 
     /**
      * PostgreSQL configuration
      * @type {Object}
      */
-    postgresql: {
-      adapter: 'sails-postgresql',
-      database: 'goconsultdb',
-      host: 'localhost',
-      user: '',
-      password: '',
-      port: 5432,
-      pool: false,
-      ssl: false
-    },
+    // postgresql: {
+    //   adapter: 'sails-postgresql',
+    //   database: 'goconsultdb',
+    //   host: 'localhost',
+    //   user: '',
+    //   password: '',
+    //   port: 5432,
+    //   pool: false,
+    //   ssl: false
+    // },
 
     /**
      * MySQL configuration
      * @type {Object}
      */
-    mysql: {
-      adapter: 'sails-mysql',
-      host: 'localhost',
-      port: 3306,
-      user: '',
-      password: '',
-      database: 'goconsultdb',
-      charset: 'utf8',
-      collation: 'utf8_swedish_ci'
-    },
+    // mysql: {
+    //   adapter: 'sails-mysql',
+    //   host: 'localhost',
+    //   port: 3306,
+    //   user: '',
+    //   password: '',
+    //   database: 'goconsultdb',
+    //   charset: 'utf8',
+    //   collation: 'utf8_swedish_ci'
+    // },
 
     /**
      * Microsoft SQL Server configuration
      * @type {Object}
      */
-    sqlserver: {
-      adapter: 'sails-sqlserver',
-      user: '',
-      password: '',
-      host: 'localhost',
-      database: 'goconsultdb',
-      options: {
-        encrypt: false
-      }
-    },
+    // sqlserver: {
+    //   adapter: 'sails-sqlserver',
+    //   user: '',
+    //   password: '',
+    //   host: 'localhost',
+    //   database: 'goconsultdb',
+    //   options: {
+    //     encrypt: false
+    //   }
+    // },
 
     /**
      * OrientDB configuration
      * @type {Object}
      */
-    orientdb: {
-      adapter: 'sails-orientdb',
-      host: 'localhost',
-      port: 2424,
-      user: '',
-      password: '',
-      database: 'goconsultdb',
-      options: {
-        databaseType: 'graph',
-        storage: 'plocal',
-        transport: 'binary',
-        decodeURIComponent: true,
-        removeCircularReferences: false,
-        unsafeDrop: false,
-        parameterized: true,
-        fetchPlanLevel: 1
-      }
-    },
+    // orientdb: {
+    //   adapter: 'sails-orientdb',
+    //   host: 'localhost',
+    //   port: 2424,
+    //   user: '',
+    //   password: '',
+    //   database: 'goconsultdb',
+    //   options: {
+    //     databaseType: 'graph',
+    //     storage: 'plocal',
+    //     transport: 'binary',
+    //     decodeURIComponent: true,
+    //     removeCircularReferences: false,
+    //     unsafeDrop: false,
+    //     parameterized: true,
+    //     fetchPlanLevel: 1
+    //   }
+    // },
 
     /**
      * DynamoDB configuration
      * @type {Object}
      */
-    dynamodb: {
-      adapter: 'sails-dynamodb',
-      accessKeyId: '',
-      secretAccessKey: '',
-      region: 'us-west-1'
-    },
+    // dynamodb: {
+    //   adapter: 'sails-dynamodb',
+    //   accessKeyId: '',
+    //   secretAccessKey: '',
+    //   region: 'us-west-1'
+    // },
 
     /**
      * FileMaker configuration
      * @type {Object}
      */
-    filemaker: {
-      adapter: 'sails-filemaker',
-      host: 'localhost',
-      database: 'goconsultdb',
-      userName: '',
-      password: ''
-    },
+    // filemaker: {
+    //   adapter: 'sails-filemaker',
+    //   host: 'localhost',
+    //   database: 'goconsultdb',
+    //   userName: '',
+    //   password: ''
+    // },
 
     /**
      * Memory configuration
      * ONLY FOR DEVELOPMENT
      * @type {Object}
      */
-    memory: {
-      adapter: 'sails-memory'
-    },
+    // memory: {
+    //   adapter: 'sails-memory'
+    // },
 
     /**
      * Disk configuration
