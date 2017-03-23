@@ -152,8 +152,8 @@ module.exports = {
      * ONLY FOR DEVELOPMENT
      * @type {Object}
      */
-    disk: {
-      adapter: 'sails-disk'
-    }
+    // disk: {
+    //   adapter: 'sails-disk'
+    // }
   }
 };

@@ -18,7 +18,41 @@ export class HomeComponent implements OnInit {
     }
  
     ngOnInit() {
-        this.loadAllUsers();
+        var response = this.loadAllUsers();
+        //console.log(this.loadAllUsers());
+        
+        //statusText
+            //_body
+            // :
+            // "{↵  "code": "E_USER_NOT_FOUND",↵  "message": "User with specified credentials is not found",↵  "data": {}↵}"
+            // headers
+            // :
+            // Headers
+            // _headers
+            // :
+            // Map
+            // _normalizedNames
+            // :
+            // Map
+            // __proto__
+            // :
+            // Object
+            // ok
+            // :
+            // false
+            // status
+            // :
+            // 401
+            // statusText
+            // :
+            // "Unauthorized"
+            // type
+            // :
+            // 2
+            // url
+            // :
+            // "http://127.0.0.1:3000/v1/users"
+
     }
  
     deleteUser(id: number) {
@@ -27,6 +61,7 @@ export class HomeComponent implements OnInit {
  
     private loadAllUsers() {
       
-        this.userService.getAll().subscribe(users => { this.users = users.data;});
+        this.userService.getAll().subscribe(users => { this.users = users.data; console.log(users.data.statusText);});
+        
     }
 }
