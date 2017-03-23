@@ -9,7 +9,7 @@
             <nav class='navbar navbar-sticky-top navbar-dark bg-inverse'>
                 <span class='navbar-brand'>Menu</span>
                 <ul class='nav navbar-nav pull-xs-right'>
-                    <li class='nav-item'>
+                    <li class='nav-item' *ngIf="!isVisible">
                         <a class='nav-link' [routerLink]="['/login']">Login</a>
                     </li>
                     <li class='nav-item'>
@@ -33,7 +33,7 @@
     <ul>
         <li *ngFor="let user of users">
             {{user.username}} ({{user.firstName}} {{user.lastName}})
-            - <a (click)="deleteUser(user.id)">Delete</a>
+            - <a (click)="viewUser(user.id)">View</a> &nbsp; <a (click)="deleteUser(user.id)">Delete</a>
         </li>
     </ul>
     

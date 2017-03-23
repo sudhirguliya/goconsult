@@ -12,8 +12,8 @@ export class UserService {
         return this.http.get('http://127.0.0.1:3000/v1/users', this.jwt()).map((response: Response) => response.json());
     }
 
-    getById(id: number) {
-        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+    getUserById(id: number) {
+        return this.http.get('http://127.0.0.1:3000/v1/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     create(user: User) {
@@ -27,7 +27,7 @@ export class UserService {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user.data.user));
                     localStorage.setItem('token', JSON.stringify(user.data.token));
-                }   
+                }
         });
     }
 
@@ -36,7 +36,7 @@ export class UserService {
     }
 
     delete(id: number) {
-        return this.http.delete('http://127.0.0.1:3000/v1/deletes' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.delete('http://127.0.0.1:3000/v1/deletes/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     // private helper methods

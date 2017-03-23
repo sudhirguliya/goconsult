@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/index';
-import { UserService } from '../_services/index';
+import { UserService, AlertService, AuthenticationService } from '../_services/index';
 
 @Component({
   moduleId: module.id,
@@ -12,8 +12,9 @@ import { UserService } from '../_services/index';
 export class HomeComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
+    private isVisible = true;
  
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private alertService: AlertService , private authenticationService: AuthenticationService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
  
@@ -55,13 +56,28 @@ export class HomeComponent implements OnInit {
 
     }
  
+    viewUser(id: number) {
+        this.userService.getUserById(id).subscribe(users => { 
+                    this.users = users.data;
+                });
+    }
+
     deleteUser(id: number) {
         this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
     }
  
     private loadAllUsers() {
       
-        this.userService.getAll().subscribe(users => { this.users = users.data; console.log(users.data.statusText);});
-        
+        this.userService.getAll()
+            .subscribe(users => { 
+                    this.users = users.data;
+                },
+                error => {
+                    if (error.status === 401)
+                    {                   
+                        this.alertService.error('User with specified credentials is not found', true);
+                        this.authenticationService.logout();
+                    } 
+                });
     }
 }
