@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/index';
 import { UserService, AlertService, AuthenticationService } from '../_services/index';
 
+import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
   moduleId: module.id,
   selector: 'app-home',
@@ -14,7 +16,12 @@ export class HomeComponent implements OnInit {
     users: User[] = [];
     private isVisible = true;
  
-    constructor(private userService: UserService, private alertService: AlertService , private authenticationService: AuthenticationService) {
+    constructor(
+        private userService: UserService, 
+        private alertService: AlertService , 
+        private authenticationService: AuthenticationService,
+        private router: Router
+        ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
  
@@ -77,6 +84,7 @@ export class HomeComponent implements OnInit {
                     {                   
                         this.alertService.error('User with specified credentials is not found', true);
                         this.authenticationService.logout();
+                        this.router.navigate(['/home']);
                     } 
                 });
     }
