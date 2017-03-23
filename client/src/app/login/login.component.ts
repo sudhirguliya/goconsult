@@ -31,6 +31,11 @@ export class LoginComponent implements OnInit {
                 },
                 error => {
                     this.alertService.error(error);
+                    //console.log(error);
+                    if (error.status === 401)
+                    {                   
+                        this.alertService.error('User with specified credentials is not found', true);
+                    } 
                     this.loading = false;
                 });
     }
