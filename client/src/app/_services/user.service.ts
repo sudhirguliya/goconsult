@@ -32,11 +32,11 @@ export class UserService {
     }
 
     update(user: User) {
-        return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+        return this.http.put('http://127.0.0.1:3000/v1/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
     }
 
     delete(id: number) {
-        return this.http.delete('http://127.0.0.1:3000/v1/deletes/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.delete('http://127.0.0.1:3000/v1/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     // private helper methods

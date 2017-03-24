@@ -1,0 +1,123 @@
+<p>
+  profile works!
+</p>
+
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Current users ({{users.length}})</h4>
+
+  <button class="btn btn-sm btn-default" (click)="enableAdding()"><i class="fa fa-times"></i> Add User</button>
+
+  <div class="card-block">
+    <table class="table table-striped" [mfData]="users" #mf="mfDataTable"
+                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                <thead class="thead-default"  *ngIf="!isEditing">
+                <tr>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="firstName">FirstName</mfDefaultSorter>
+                    </th>
+                    <th style="width: 40%">
+                        <mfDefaultSorter by="lastName">LastName</mfDefaultSorter>
+                    </th>
+                    <th style="width: 10%">
+                        <mfDefaultSorter by="username">Username</mfDefaultSorter>
+                    </th>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                    </th>
+                    <th style="width: 10%">Actions</th>
+                </tr>
+                <tr>
+                    <th colspan="5">
+                        Filter by name:
+                        <input class="form-control" [(ngModel)]="filterQuery"/>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+    
+      <tbody *ngIf="users.length === 0">
+        <tr>
+          <td colspan="4">There are no users in the DB. Add a new user below.</td>
+        </tr>  
+      </tbody>
+      <tbody *ngIf="!isEditing">
+        <tr *ngFor="let user of users">
+          <td>{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="enableEditing(user)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteUser(user)"><i class="fa fa-trash"></i> Delete</button>
+          </td>
+        </tr>  
+      </tbody>
+      <tfoot>
+    <tr>
+        <td colspan="5">
+            <mfBootstrapPaginator [rowsOnPageSet]="[1,5,10,25]"></mfBootstrapPaginator>
+        </td>
+    </tr>
+    </tfoot>
+      <tbody *ngIf="isEditing">
+        <tr>
+          <td colspan="4">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editUser(user)" style="display:inline">
+              <div class="form-group">
+                  <input class="form-control" type="text" name="firstName" [(ngModel)]="user.firstName" placeholder="FirstName" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="lastName" [(ngModel)]="user.lastName" placeholder="LastName" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="email" [(ngModel)]="user.email" placeholder="Email" required>
+              </div>
+              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+            </form>
+            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--<div class="card" *ngIf="!isEditing">
+  <h4 class="card-header">Add new User</h4>
+  <div class="card-block">
+    <form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required placeholder="firstName"/>
+            <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required placeholder="lastName" />
+            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required placeholder="Username" />
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <label for="username">Email</label>
+            <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required placeholder="Email" />
+            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="password" />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">Register</button>
+            <img *ngIf="loading" src="images/loading.gif" />
+            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+  </div>
+</div>-->

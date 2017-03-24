@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     viewUser(id: number) {
         this.userService.getUserById(id).subscribe(users => { 
                     this.users = users.data;
-                });
+        });
     }
 
     deleteUser(id: number) {

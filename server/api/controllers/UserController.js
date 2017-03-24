@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-    getAll: function (req, res) {
+/*    getAll: function (req, res) {
         User.find().exec(function(err, record) {
         if(err) return err;
             res.ok(record);
@@ -35,5 +35,5 @@ module.exports = {
             if(err) return err;
             res.ok(record);
         })
-    }
+    }*/
 };

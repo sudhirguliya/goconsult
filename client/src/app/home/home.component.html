@@ -5,29 +5,11 @@
 
 <div class="wrapper">
 
-<header>
-            <nav class='navbar navbar-sticky-top navbar-dark bg-inverse'>
-                <span class='navbar-brand'>Menu</span>
-                <ul class='nav navbar-nav pull-xs-right'>
-                    <li class='nav-item' *ngIf="!isVisible">
-                        <a class='nav-link' [routerLink]="['/login']">Login</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' [routerLink]="['/register']">Register</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' [routerLink]="['/home']">Home</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' [routerLink]="['/logout']">Logout</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+
 
     <!-- /.sidebar -->
 <div class="col-md-6 col-md-offset-3">
-    <h1>Hi {{currentUser.username}}!</h1>
+    <!--<h1>Hi {{currentUser.username}}!</h1>-->
     <p>You're logged in with Angular 2!!</p>
     <h3>All registered users:</h3>
     <ul>
