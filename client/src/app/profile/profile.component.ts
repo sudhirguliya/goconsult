@@ -9,9 +9,10 @@ import { UserService, AlertService, AuthenticationService } from '../_services/i
 })
 export class ProfileComponent implements OnInit {
     public filterQuery = "";
-    public rowsOnPage = 1;
+    public rowsOnPage = 10;
     public sortBy = "email";
-    public sortOrder = "asc";
+    public sortOrder = "desc";
+    
   users: User[] = [];
   isLoading = true;
 
