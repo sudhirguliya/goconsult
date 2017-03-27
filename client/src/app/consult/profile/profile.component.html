@@ -1,10 +1,5 @@
-<p>
-  profile works!
-</p>
-
 <div class="card" *ngIf="!isLoading">
   <h4 class="card-header">Current users ({{users.length}})</h4>
-
   <button class="btn btn-sm btn-default" (click)="enableAdding()"><i class="fa fa-times"></i> Add User</button>
   <!--<div class="col-xs-2">
                 <label class="label-control">Rows on page</label>
@@ -39,6 +34,7 @@
                 </div>
             </div>-->
   <div class="card-block">
+      
     <table class="table table-striped" [mfData]="users" #mf="mfDataTable"
                    [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                 <thead class="thead-default"  *ngIf="!isEditing">
@@ -91,8 +87,42 @@
     </tfoot>
       <tbody *ngIf="isEditing">
         <tr>
-          <td colspan="4">
-            <form class="form-inline" #form="ngForm" (ngSubmit)="editUser(user)" style="display:inline">
+          <td colspan="5">
+              <div class="card">
+                <div class="card-header">
+                <strong>Normal</strong> Form
+                </div>
+                <div class="card-block">
+                <form #form="ngForm" (ngSubmit)="editUser(user)">
+                    <div class="form-group">
+                    <label for="FirstName">FirstName</label>
+                    <input class="form-control" type="text" name="firstName" [(ngModel)]="user.firstName" placeholder="FirstName" required>
+                    <!--<span class="help-block">Please enter your FirstName</span>-->
+                    </div>
+                    <div class="form-group">
+                    <label for="LastName">LastName</label>
+                    <input class="form-control" type="text" name="lastName" [(ngModel)]="user.lastName" placeholder="LastName" required>
+                    <!--<span class="help-block">Please enter your LastName</span>-->
+                    </div>
+                    <div class="form-group">
+                        <label for="LastName">Username</label>
+                        <input class="form-control" type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="LastName">Email</label>
+                        <input class="form-control" type="text" name="email" [(ngModel)]="user.email" placeholder="Email" required>
+                    </div>
+                    <div class="card-footer">
+                    <button type="submit" [disabled]="!form.form.valid" class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Save</button>
+                    <button class="btn btn-sm btn-danger" (click)="cancelEditing()"><i class="fa fa-ban"></i> Cancel</button>
+                    </div>
+                </form>
+                </div>
+                
+            </div>
+
+
+            <!--<form class="form-inline" #form="ngForm" (ngSubmit)="editUser(user)" style="display:inline">
               <div class="form-group">
                   <input class="form-control" type="text" name="firstName" [(ngModel)]="user.firstName" placeholder="FirstName" required>
               </div>
@@ -107,7 +137,7 @@
               </div>
               <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
             </form>
-            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>-->
           </td>
         </tr>
       </tbody>

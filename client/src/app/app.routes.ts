@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SignupComponent } from './signup/signup.component';
-import { ProfileComponent } from './profile/profile.component';
+//import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './_guards/index';
 import { NotFoundComponent } from './not-found/not-found.component'
 
@@ -20,29 +20,34 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'register', component: SignupComponent },
   { path: 'home',   component: HomeComponent }, // , pathMatch: 'full'
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  // { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   
   {
     path: 'consult',
     redirectTo: 'consult/dashboard',
     pathMatch: 'full',
   },
+  {
+    path: 'profile',
+    redirectTo: 'consult/profile',
+    pathMatch: 'full',
+  },
 
   {
     path: 'consult',
-    component: FullLayoutComponent,
+    component: FullLayoutComponent,  canActivate: [AuthGuard],
     data: {
       title: 'Consultant'
     },
     children: [
       {
-        path: 'dashboard',
+        path: 'dashboard',  canActivate: [AuthGuard], 
         loadChildren: './consult/dashboard/dashboard.module#DashboardModule'
       },
-      // {
-      //   path: 'components',
-      //   loadChildren: './components/components.module#ComponentsModule'
-      // },
+       {
+         path: 'profile',  canActivate: [AuthGuard], 
+         loadChildren: './consult/profile/profile.module#ProfileModule'
+       },
       // {
       //   path: 'icons',
       //   loadChildren: './icons/icons.module#IconsModule'

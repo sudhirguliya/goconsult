@@ -17,7 +17,7 @@ import { SignupComponent } from './signup/signup.component';
 
 import { routing } from './app.routes';
 import { LogoutComponent } from './logout/logout.component';
-import { ProfileComponent } from './profile/profile.component';
+//import { ProfileComponent } from './profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 // Layouts
@@ -38,7 +38,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
     SignupComponent,
     AlertComponent,
     LogoutComponent,
-    ProfileComponent,
+    //ProfileComponent,
     NotFoundComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,

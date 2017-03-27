@@ -48,7 +48,7 @@
         <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
         <div class="divider"></div>
         <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
-        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+        <a class="dropdown-item" [routerLink]="['/logout']"><i class="fa fa-lock"></i> Logout</a>
       </div>
     </li>
     <li class="nav-item hidden-md-down">
@@ -63,18 +63,18 @@
     <nav class="sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/consult/dashboard']"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
         </li>
         
         <li class="divider"></li>
         <li class="nav-title">
-          UI Elements
+          Consult Functionality
         </li>
         <li class="nav-item nav-dropdown" routerLinkActive="open">
-          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Components</a>
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-cog"></i> Consultant</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="icon-puzzle"></i> Buttons</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/consult/profile']"><i class="fa fa-male"></i> Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-puzzle"></i> Social Buttons</a>
