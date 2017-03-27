@@ -1,0 +1,10 @@
+.show_promo { cursor: pointer; }
+.header-bg {    padding-bottom: 100px;}
+
+
+/************* Css for currency switcher **************/
+.btn-inr {    background: #009999;    color: #fff;    padding: 5px 0px;    position: relative;   float: left;    max-width: 80px;}
+.btn-inr:before{content: "\f156";position:absolute;width: 32px;height: 32px;background: #007c7c;left: -15px;border-radius: 50%;top: -1px;font: normal normal normal 12px/1 FontAwesome;font-size: 20px;padding: 8px 5px;}
+.btn-dollar {    background: #ff6633;    color: #fff;    padding: 5px 0px 5px 10px;    position:relative;    float: left;    max-width: 100px;    text-align: left;}
+.btn-dollar:before{content: "\f155";position:absolute;width: 32px;height: 32px;background: #e15121;right: -15px;border-radius: 50%;top: -1px;font: normal normal normal 12px/1 FontAwesome;font-size: 20px;padding: 7px 5px;text-align: center;}
+.display{ display:inline;}

@@ -1,23 +1,430 @@
-<p>
-  home works!
-</p>
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/gostyle.css">
+<link rel="stylesheet" href="assets/css/gostyle-responsive.css">
+<!--<link rel="stylesheet" href="assets/css/font-awesome.min.css">-->
+<link rel="stylesheet" href="assets/css/owl.carousel.css">
+<link rel="stylesheet" href="assets/css/owl.theme.css">
+<link rel="stylesheet" href="assets/css/owl.transitions.css">
 
+<header class="header-bg">
+	<div class="header-navbar">    
+        <nav [ngClass]="{'navbar':true,'navbar-fixed-top':true,'header-nav':true,'affix-top': !isClassVisible,'affix': isClassVisible }" class="" data-spy="affix" data-offset-top="100">
+            <div class="container">
+                <div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+					<a class="navbar-brand logo" href="https://www.goconsult.in/index.php"><img src="assets/images/go-consult-logo.png">
+					</a>
+                </div>
+                <!-- Main Menu List -->
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul id="navbar-nav" class="nav navbar-nav navbar-right">
+                                
+								<li><a href="https://goconsult.in/gc/vconsult/goconsult-1"><img src="assets/images/video-call.png" /></a></li> 
+                                <!--li><a href="#" class="btn btn-primary">LOGIN</a></li--> 
+                    </ul>
+				</div>
+            </div>
+        </nav>
 
-<div class="wrapper">
+    </div>
+<!-- End: Navbar Area  -->
+<!-- Start: Header Content -->
 
+	<div class="container">
+		<div class="row header-title">
+			<img src="assets/images/header-banner.png" style="margin:110px auto 0px auto;" class="img-responsive">
+            <div class="clearfix"></div>
+            <a href="#get_start" class="btn btn-outline-primary getstart" style="margin-top: 20px;">Get Started</a>
+        </div>
+	</div>
 
+    <div class="modal fade" id="myModalVideo" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal_vd">
+                <div class="modal-body">
+                    <button type="button" class="close close_x" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<div>
+						<iframe width="100%" height="350" src="https://www.youtube.com/embed/sivXk8cTPIA" frameborder="0" allowfullscreen> </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- video modal end -->
+</header>
+<section id="integration" class="integration">
+	<div class="container">
+		<div class="row">
+			<div class="section-header col-md-6 col-md-offset-3">
+				<h2>Integrate in 3 Simple Steps</h2>
+			<!--p>Donec sed odio dui. Aenean eu leo quam. Pellentesque ornare sem laca quam venenatis vestibulum.</p-->
+			</div>
+		</div>
+		<div class="row three-steps">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="row steps-list form-group">
+					<div class="col-sm-4 col-xs-12 steps-item">
+						<h4>open your account</h4>
+						<i class="fa aria-hidden"><img src="assets/images/login-user-icon.png"></i>
+					</div>
+					<div class="col-sm-4 col-xs-12 steps-item">
+						<h4>Paste custom link on website</h4>
+						<i class="fa aria-hidden"><img src="assets/images/embed-icon.png"></i>
+					</div>
+					<div class="col-sm-4 col-xs-12 steps-item">
+						<h4>Upload logo & set colour scheme</h4>
+						<i class="fa aria-hidden"><img src="assets/images/upload-icon.png"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="goconsult-features" class="features-background goconsult-features">
+	<div class="overlay-color">
+		<div class="container">
+			<div class="row">
+				<div class="section-header col-md-6 col-md-offset-3">
+					<h2>Features</h2>
+				</div>
+				<div class="clearfix"></div>
+				<div class="features">
+					<div class="features-item col-xs-12">
+						<ul class="row">
+							<li class="col-md-4 col-sm-4 feature-list">
+                                        <i class="fa fa-cogs" aria-hidden="true"></i>
+                                        <div class="detail">
+                                            <h4>Easy Integration</h4>
+                                            <p>Can be integrated to your site in seconds – without changing the look and feel of your website.</p>
+                                        </div>
+                            </li>
+							<li class="col-md-4 col-sm-4 feature-list">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                        <div class="detail">
+                                            <h4>No Downloads</h4>
+                                            <p>Unlike other online meeting application, GoConsult lets you start start video conferencing without any downloads. Integrate an URL provided by us in your website and get started.</p>
+                                        </div>
+                            </li>
+							<li class="col-md-4 col-sm-4 feature-list">
+                                        <i class="fa fa-laptop" aria-hidden="true"></i>
+                                        <div class="detail">
+                                            <h4>No High-End System Requirements</h4>
+                                            <p>You don’t need updated Windows, or MAC OS, or Linux to access GoConsult. It works on every system and every browser.</p>
+                                        </div>
+                            </li>
+							<li class="col-md-4 col-sm-4 feature-list">
+                                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                        <div class="detail">
+                                            <h4>Easy To Join A Meeting</h4>
+                                            <p>Joining a meeting in GoConsult is as easy as pie. Just go to your website, add your ID, and start the meeting.</p>
+                                        </div>
+                            </li>
+							<li class="col-md-4 col-sm-4 feature-list">
+                                        <i class="fa fa-user-secret" aria-hidden="true"></i>
+                                        <div class="detail">
+                                            <h4>Secure And Private Connection</h4>
+                                            <p>We understand the importance of confidentiality in business and hence we make sure that all your connections are protected.</p>
+                                        </div>
+                            </li>
+							<li class="col-md-4 col-sm-4 feature-list">
+                                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                                        <div class="detail">
+                                            <h4>Mobile Friendly</h4>
+                                            <p>Like your website, GoConsult works efficiently on every device – regardless of the size of the device. So, even if your clients are on the go and using a mobile phone, you can ask them to join a meeting.</p>
+                                        </div>
+                            </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<a id="get_start"></a>
+<section id="pricing-table">
+    <div class="container">
+		<div class="row"> 
+			<div class="section-header col-md-6 col-md-offset-3">
+                <h2 class="section-heading">Pricing Table</h2>
+			</div>
+        <!-- Section Content -->
+			<div class="section-content wow fadeIn animated col-md-12" data-wow-duration="1.5s" data-wow-offset="10" style="visibility: visible; animation-duration: 1.5s; animation-name: fadeIn;">
+				<div class="row">
+					<div class="col-md-12 form-group">
+						<div class="pull-right" style="    min-width: 195px;">
+							   <a href="javascript:void(0);" (click)="changePlan(1)" class="btn btn-inr">INR</a>
+							   <a (click)="changePlan(2)" href="javascript:void(0);" class="btn btn-dollar">DOLLAR</a>
+							   <input type="hidden" value='1' id="price_type" />
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-4">
+						<div class="pricing-table">
+							<div class="header"><i class="fa fa-tag" aria-hidden="true"></i> Basic </div>
+						<!--div class="price"> 5999 <span class="currency"></span> <span class="month"> / Year</span> </div-->
+							<div class="price_box">
+								<span id="change_currency1" class="rupee">
+								<i [ngClass]="{'fa':true,'fa-inr':rs,'fa-usd':usd }" aria-hidden="true"></i> <div  [ngClass]="['display']" *ngIf="rs">7771</div><div [ngClass]="['display']" *ngIf="usd">50</div></span>
+								<span class="cut-price"></span>
+								<span class="year">/ Year</span>
+							</div>
+							<ul class="table-list">
+								<li>3000 min </li>
+								<li> Single User </li>
+								<li class="not"> Priority Integration Support </li>
+								<li class="not"> Client Account Management </li>
+								<li  class="show_promo" id="code1"> Have a Promo Code? </li>
+								<li class="hide" id="promocode1">
+								<input name="phone"  onkeyup='check_coupon(1);' type="text" autocomplete="off" placeholder="Coupon Code" class="form-control" required id="coupon1">   
+								<span id="coupon_status1"></span> 
+								</li>
+							</ul>
+							<a  href="plan-details.php?plan=basic&price=inr" id="link1" class="btn btn-default btn-signup">BUY NOW</a>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-4">
+						<div class="pricing-table" style="background:#f4f4f4;">
+							<div class="discnt">15% OFF</div>
+							<div class="header"><i class="fa fa-bookmark-o" aria-hidden="true"></i> Standard </div>
+						<!--div class="price"> 9999 <span class="currency"></span> <span class="month"> / Year</span> </div-->
+							<div class="price_box">
+								<span id="change_currency2" class="rupee"><i [ngClass]="{'fa':true,'fa-inr':rs,'fa-usd':usd }" aria-hidden="true"></i>  <div [ngClass]="['display']" *ngIf="rs">11111</div><div [ngClass]="['display']" *ngIf="usd">100</div></span>
+								<span id="cut_currency1" class="cut-price">
+									<i  [ngClass]="{'fa':true,'fa-inr':rs,'fa-usd':usd }"aria-hidden="true"></i><div [ngClass]="['display']" *ngIf="rs">13999</div><div [ngClass]="['display']" *ngIf="usd">500</div>
+								</span>
+								<span class="year">/ Year</span>
+							</div>
+							<ul class="table-list">
+								<li> 6000 min </li>
+								<li> Upto 3 Users </li>
+								<li class="not"> Priority Integration Support </li>
+								<li class="not"> Client Account Management </li>
+								<li  class="show_promo" id="code2"> Have a Promo Code? </li>
+								<li class="hide" id="promocode2">
+								<input name="phone" onkeyup='check_coupon(2);' type="text" autocomplete="off" placeholder="Coupon Code" class="form-control" required id="coupon2">   
+								<span id="coupon_status2"></span> 
+								</li>
+						</ul>
+						<a id="link2" href="plan-details.php?plan=standard&price=inr" class="btn btn-default btn-signup">BUY NOW</a>
+					  </div>
+					</div>
+            
+            <div class="col-sm-12 col-md-4">
+              <div class="pricing-table">
+              <div class="discnt">25% OFF</div>
+                <div class="header"><i class="fa fa-trophy" aria-hidden="true"></i> Gold </div>
+                <!--div class="price"> 13999 <span class="currency"></span> <span class="month"> / Year</span> </div-->
+                <div class="price_box">
+                    <span id="change_currency3" class="rupee"><i [ngClass]="{'fa':true,'fa-inr':rs,'fa-usd':usd }" aria-hidden="true"></i> <div  [ngClass]="['display']" *ngIf="rs">15000</div><div [ngClass]="['display']"  *ngIf="usd">200</div></span>
+                    <span id="cut_currency1" class="cut-price">
+									<i  [ngClass]="{'fa':true,'fa-inr':rs,'fa-usd':usd }"aria-hidden="true"></i><div [ngClass]="['display']" *ngIf="rs">13999</div><div [ngClass]="['display']" *ngIf="usd">500</div>
+								</span>
+                    <span class="year">/ Year</span>
+                </div>
+                <ul class="table-list">
+                  <li> 9600 min </li>
+                  <li> Upto 7 Users </li>
+                  <li> Priority Integration Support </li>
+                  <li> Client Account Management </li>
+				   <li  class="show_promo" id="code3"> Have a Promo Code? </li>
+                    <li class="hide" id="promocode3">
 
-    <!-- /.sidebar -->
-<div class="col-md-6 col-md-offset-3">
-    <!--<h1>Hi {{currentUser.username}}!</h1>-->
-    <p>You're logged in with Angular 2!!</p>
-    <h3>All registered users:</h3>
-    <ul>
-        <li *ngFor="let user of users">
-            {{user.username}} ({{user.firstName}} {{user.lastName}})
-            - <a (click)="viewUser(user.id)">View</a> &nbsp; <a (click)="deleteUser(user.id)">Delete</a>
-        </li>
-    </ul>
-    
-</div>
-</div>
+						<input name="phone" onkeyup='check_coupon(3);' type="text" autocomplete="off" placeholder="Coupon Code" class="form-control" required id="coupon3">   
+						<span id="coupon_status3"></span> 
+						
+				  </li>
+                </ul>
+                <a id="link3" href="plan-details.php?plan=gold&price=inr" class="btn btn-default btn-signup">BUY NOW</a>
+              </div>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+</section>
+<section id="register" class="register-background register">
+	<div class="overlay-color">
+		<div class="container">
+			<div class="row register-body section-separator">
+				<div class="section-header col-md-8 col-md-offset-2">
+                    <h2 class="section-heading">Request A Free Demo!</h2>
+                    <p>Please enter your details below and our executive will schedule an online demo at your convenient time</p>   
+                </div>
+				<div class="clearfix"></div>
+				
+				<div class="col-xs-12">
+				<div style="color:red;" id="result_out"></div>
+					<form id="register-form" name="register-form" method="post" class="form input-group register-form">
+						<div class="container-fluid">
+							<div class="row">
+
+								<div class="col-sm-3 col-xs-12">
+									<input name="name" id="name" class="form-cus form-control" type="text" placeholder="Name" required>
+								</div>
+
+								<div class="col-sm-3 col-xs-12">
+									<input name="email" id="email" class="form-cus form-control" type="email" placeholder="Email" required>
+								</div>
+
+								<div class="col-sm-3 col-xs-12">
+									<input name="contact" id="contact" class="form-cus form-control" type="number" placeholder="Mobile No." required>
+								</div>
+
+								<div class="form-group col-sm-3 col-xs-12">
+									<button id="submit" class="btn btn-1 btn-fill ">GET Started</button>
+								</div>
+
+							</div> <!-- End: .row -->
+						</div> <!-- End: .container-fluid -->
+          </form>
+				</div>
+				<div class="col-xs-12 terms">
+					<p>By clicking "Get Started" I agree to company’s <a href="terms-condition.html">Terms of Service</a>.</p>
+				</div>
+			</div>
+	
+		
+		</div>
+	</div>
+</section>
+<section class="faq-section" id="faq-section">
+	<div class="container">
+		<div class="row section-separator">
+			<div class="section-header col-md-6 col-md-offset-3">
+				<h2 class="section-heading">Frequently Asked Question</h2>
+				<!--p>Donec sed odio dui. Aenean eu leo quam. Pellentesque ornare sem laca quam venenatis vestibulum.</p-->
+				<div class="clearfix"></div>
+			</div>
+			<div class="faq-body-contant col-md-10 col-md-offset-1">
+				<div class="faq-contant-body">
+					<div class="faq-image col-sm-6 col-xs-12">
+						<img src="assets/images/faq.jpg" alt="">
+					</div>
+					<div class="faq-inner col-sm-6 col-xs-12">
+						<div class="faq-tab ">
+						<div class="panel-group" id="accordion">
+
+                                        <!-- Start: Tab-1 -->
+                                        <div class="panel panel-default" id="panel1">
+                                            <div class="panel-heading" (click)="hideShow('one')">
+                                                <h4 class="panel-title">
+
+                                                    <!-- Tab-1 Title Goes Here  -->
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" [ngClass]="{'collapsed':showPlus.sone}">Why should I use it instead of other video conferencing tools like Skype, Hangouts etc..?
+                                                        <span class="collapse-icon"><span></span></span>
+                                                    </a>
+
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" [ngClass]="{'panel-collapse':true,'collapse':true,'in': hide.sone}" >
+
+                                                <!-- Tab-1 Detail Goes Here  -->
+                                                <div class="panel-body">
+                                                    Go Consult is more Professional. (Maintains a distance with your personal contacts, not everybody needs to be added in the list) Faster and Better Quality (Lesser Bandwidth used with enhanced image quality) No Downloads (No s/w download) Simple and Quick to Use (Click, Enter Mail id, Go) Reliable (The same id can be used by another employee if the person leaves) No coding (Just add the hyperlink wherever it suits you and you are good to go) Saves time and travel, safe and secure meetings. No time delays as easy as possible. Easy Website integration (Just add the hyperlink in your website and customize the page so that it looks absolutely similar to your own website)
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- End: Tab-1 -->
+
+                                        <!-- Start: Tab-2 -->
+                                        <div class="panel panel-default" id="panel2">
+                                            <div class="panel-heading" (click)="hideShow('two')">
+                                                <h4 class="panel-title">
+
+                                                    <!-- Tab-1 Title Goes Here  -->
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" [ngClass]="{'collapsed':showPlus.stwo}">
+                                                        Does it mess  with my existing website's code?
+                                                        <span class="collapse-icon"><span></span></span>
+                                                    </a>
+
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" [ngClass]="{'panel-collapse':true,'collapse':true,'in': hide.stwo}">
+
+                                                <!-- Tab-2 Detail Goes Here  -->
+                                                <div class="panel-body">
+                                                    No, the code on your page remains untouched and undisturbed. All you need to add is a hyperlink that would be sent on your mail wherever you find it feasible. You can either create a new video button on your website or customize the page to sync with your own website or you can add a video option in any of the tab like contact us etc. with a video option available.
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- End: Tab-2 -->
+
+                                        <!-- Start: Tab-3 -->
+                                        <div class="panel panel-default" id="panel3">
+                                            <div class="panel-heading" (click)="hideShow('three')">
+                                                <h4 class="panel-title">
+
+                                                    <!-- Tab-3 Title Goes Here  -->
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" [ngClass]="{'collapsed':showPlus.sthree}">
+                                                        How easy it is to integrate?
+                                                        <span class="collapse-icon"><span></span></span>
+                                                    </a>
+
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" [ngClass]="{'panel-collapse':true,'collapse':true,'in': hide.sthree}">
+
+                                                <!-- Tab-3 Detail Goes Here  -->
+                                                <div class="panel-body">
+                                                   If you are a marketing consultant, counselor, or provide any other consultancy service and want a smooth and efficient video communication for your meetings, discussions, counseling, seminars etc. then here we go! You just need to purchase a plan on the Go Consult website as per your requirement and there you go! A hyperlink would be created which is hardly a two minute process to add on your website and then customize the look and feel of the page as you want it to be. That’s it! You are good to go. Simply click on the link, enter your mail id and here it is. As easy you’d imagine it to be.
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- End: Tab-3 -->
+
+                                        <!-- Start: Tab-4 -->
+                                        <div class="panel panel-default" id="panel4">
+                                            <div class="panel-heading" (click)="hideShow('four')">
+                                                <h4 class="panel-title">
+
+                                                    <!-- Tab-4 Title Goes Here  -->
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" [ngClass]="{'collapsed':showPlus.sfour}">
+                                                        Do I need to install anything ?
+                                                        <span class="collapse-icon"><span></span></span>
+                                                    </a>
+
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour" [ngClass]="{'panel-collapse':true,'collapse':true,'in': hide.sfour}">
+
+                                                <!-- Tab-4 Detail Goes Here  -->
+                                                <div class="panel-body">
+                                                   No Downloads! You don’t need to install it ever. Once the link is added, you just a step back of entering your email id and enter the discussion room. It is super easy and supported by all the modern browsers and modern gadgets like PC, Mobile, and Tablets.
+                                                </div>
+
+                                            </div>
+                                        </div> <!-- End: Tab-4 -->
+                                        
+                                    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="copyright col-sm-12 col-md-6">
+				<p>© 2016 <a href="" title="">Eyas Ventures Pvt Ltd.</a></p>
+			</div>
+			<div class="copyright col-sm-12 col-md-6">
+				<ul class="footer-nav">
+				<li><a href="https://www.goconsult.in/goconsult/admin/login" title="">Admin</a></li>
+                <li><a href="https://www.goconsult.in/about-us.html" title="">About us</a></li>
+                <li><a href="https://www.goconsult.in/terms-condition.html" title="">Terms & Conditions</a></li>
+                <li><a href="https://www.goconsult.in/privacy-policy.html" title="">Privacy Policy</a><li>
+                </ul>
+			</div>
+		</div>
+	</div>
+	
+</footer>

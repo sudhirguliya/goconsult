@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
       //this.authenticationService.logout();
 
       // get return url from route parameters or default to '/'
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'home';
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'profile';
       //console.log(this.returnUrl);
 
       if (localStorage.getItem('token') && localStorage.getItem('token') != 'undefined') {
             // logged in so return true
            // not logged in so redirect to login page with the return url
-          this.router.navigate(['/home']);
+          this.router.navigate(['/profile']);
         }
 
         

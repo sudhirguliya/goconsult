@@ -7,22 +7,30 @@
             <div class="card-block">
               <h1>Login</h1>
               <p class="text-muted">Sign In to your account</p>
-              <div class="input-group mb-1">
+              <alert></alert> 
+              <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+              <div class="input-group mb-1" [ngClass]="{ 'has-danger': f.submitted && !email.valid }">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" required>
+                <br/>
+                <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
               </div>
-              <div class="input-group mb-2">
+              <div class="input-group mb-2" [ngClass]="{ 'has-danger': f.submitted && !password.valid }">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+                <br/>
+                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
               </div>
               <div class="row">
                 <div class="col-6">
-                  <button type="button" class="btn btn-primary px-2">Login</button>
+                  <button [disabled]="loading" class="btn btn-sm btn-primary"><i class="fa fa-user"></i> Login</button>
+                  <img *ngIf="loading" src="assets/images/loading.gif" />
                 </div>
                 <div class="col-6 text-right">
-                  <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                  <a [routerLink]="['/forgot']"  class="btn btn-link px-0">Forgot password?</a>
                 </div>
               </div>
+              </form>
             </div>
           </div>
           <div class="card card-inverse card-primary py-3 hidden-md-down" style="width:44%">
@@ -30,7 +38,7 @@
               <div>
                 <h2>Sign up</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <button type="button" class="btn btn-primary active mt-1">Register Now!</button>
+                <a [routerLink]="['/signup']" type="button" class="btn btn-primary active mt-1">Register Now!</a>
               </div>
             </div>
           </div>
@@ -39,28 +47,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-	<div class="col-md-6 col-md-offset-3">
-    <h2>Login</h2>
-    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
-            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
-            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-        </div>
-        <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Login</button>
-            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            <a [routerLink]="['/signup']" class="btn btn-link">Register</a>
-        </div>
-    </form>
-</div>
-

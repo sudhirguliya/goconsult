@@ -1,0 +1,51 @@
+@media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
+	header{padding-bottom:36px;}
+	.header-nav {padding:10px 0 5px 0 !important;}
+	.navbar-brand.logo > img{width:65%;}
+	.navbar-nav{text-align:center;}
+	.header-bg .affix{padding:0;}
+	.navbar-toggle{margin-right:0;}
+	.header-bg .affix .navbar-collapse{padding:4px 0 0 0;}
+	.header-navbar .navbar-nav > li > a{padding:7px 40px;}
+	.header-title h1 {
+    font-size: 56px;
+    font-weight: 300;
+    margin-top: 120px;
+	}
+	.header-title a.getstart{
+		margin-top:18px;
+	}
+	.header-title a.watchvid{
+		margin-top:18px; margin-left:0;
+	}
+	.price-table{
+		margin-bottom: 15px;
+	}
+	.price-table:last-child {
+    margin-bottom: 0;
+}
+	.form-cus {
+		margin-bottom: 15px !important;
+	}
+	.faq-image img {
+    height: auto;
+    position: relative;
+    width: 100% !important;
+	}
+	.faq-inner, .faq-image {
+    display: block !important;
+    float: none !important;
+    padding-left: 0;
+    padding-right: 0;
+	overflow:hidden;
+	}
+	.faq-tab{margin:0;}
+	.features-item ul li:nth-child(4){clear:inherit !important;}
+	.footer ul.footer-nav{text-align:center;}
+	.footer .copyright p{text-align:center; padding:2px 0;} 
+	.footer ul.footer-nav{padding:0;}
+	
+}
+@media only screen and (max-width: 768px){
+		.right-image{display:none;}
+}

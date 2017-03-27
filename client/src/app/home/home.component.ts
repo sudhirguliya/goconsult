@@ -1,91 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , HostListener } from '@angular/core';
 import { User } from '../_models/index';
-import { UserService, AlertService, AuthenticationService } from '../_services/index';
-
-import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../_services/index';
+//import { Document } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  host: {
+        '(window:scroll)': 'add_header($event)'
+    }
 })
 
 export class HomeComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
-    private isVisible = true;
- 
-    constructor(
-        private userService: UserService, 
-        private alertService: AlertService , 
-        private authenticationService: AuthenticationService,
-        private router: Router
-        ) {
+	private isClassVisible=false;
+	private rs= true;
+	private usd= false;
+	private hide = {'sone':false,'stwo':false,'sthree':false,'sfour':false};
+	private showPlus = {'sone':true,'stwo':true,'sthree':true,'sfour':true};
+    constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
  
     ngOnInit() {
-        var response = this.loadAllUsers();
-        //console.log(this.loadAllUsers());
-        
-        //statusText
-            //_body
-            // :
-            // "{↵  "code": "E_USER_NOT_FOUND",↵  "message": "User with specified credentials is not found",↵  "data": {}↵}"
-            // headers
-            // :
-            // Headers
-            // _headers
-            // :
-            // Map
-            // _normalizedNames
-            // :
-            // Map
-            // __proto__
-            // :
-            // Object
-            // ok
-            // :
-            // false
-            // status
-            // :
-            // 401
-            // statusText
-            // :
-            // "Unauthorized"
-            // type
-            // :
-            // 2
-            // url
-            // :
-            // "http://127.0.0.1:3000/v1/users"
-
+		
+      // this.loadAllUsers();
     }
- 
-    viewUser(id: number) {
-        this.userService.getUserById(id).subscribe(users => { 
-                    this.users = users.data;
-        });
+	 add_header(evt) {
+        let currPos = (window.pageYOffset || evt.target.scrollTop) - (evt.target.clientTop || 0);
+		if(currPos>50)
+		{
+			this.isClassVisible=true;
+		}else{
+			this.isClassVisible=false;
+		}
     }
-
-    deleteUser(id: number) {
-        this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
-    }
- 
-    private loadAllUsers() {
-      
-        this.userService.getAll()
-            .subscribe(users => { 
-                    this.users = users.data;
-                },
-                error => {
-                    if (error.status === 401)
-                    {                   
-                        this.alertService.error('User with specified credentials is not found', true);
-                        this.authenticationService.logout();
-                        this.router.navigate(['/home']);
-                    } 
-                });
-    }
+    
+	changePlan(plan)
+	{
+		if(plan==1)
+		{
+			this.rs=true;
+			this.usd=false;
+		}
+		else{
+			this.rs=false;
+			this.usd=true;
+		}
+		
+	}
+	hideShow(hide)
+	{
+		let x =this.hide['s'+hide];
+		let Y =this.showPlus['s'+hide];
+		for (let key in this.hide) {
+		this.hide[key]=false;
+		}
+		for (let key in this.showPlus) {
+		this.showPlus[key]=true;
+		}
+		if(x!=true)
+		this.showPlus['s'+hide]=false;
+		//alert(this.hide['s'+hide]);
+		if(x!=true)
+		this.hide['s'+hide] =!this.hide['s'+hide];
+	}
+    
 }
