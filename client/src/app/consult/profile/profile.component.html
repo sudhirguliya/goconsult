@@ -1,6 +1,7 @@
 <div class="card" *ngIf="!isLoading">
   <h4 class="card-header">Current users ({{users.length}})</h4>
-  <button class="btn btn-sm btn-default" (click)="enableAdding()"><i class="fa fa-times"></i> Add User</button>
+  <button *ngIf="isShow" class="btn btn-sm btn-default" (click)="enableAdding()"><i class="fa fa-times"></i> Add User</button>
+  <button *ngIf="isAdding" class="btn btn-sm btn-default" (click)="showall()"><i class="fa fa-times"></i> All User</button>
   <!--<div class="col-xs-2">
                 <label class="label-control">Rows on page</label>
                 <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
@@ -33,7 +34,7 @@
                     </div>
                 </div>
             </div>-->
-  <div class="card-block">
+  <div class="card-block" *ngIf="isShow">
       
     <table class="table table-striped" [mfData]="users" #mf="mfDataTable"
                    [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
@@ -85,100 +86,77 @@
         </td>
     </tr>
     </tfoot>
-      <tbody *ngIf="isEditing">
-        <tr>
-          <td colspan="5">
-              <div class="card">
-                <div class="card-header">
-                <strong>Normal</strong> Form
-                </div>
-                <div class="card-block">
-                <form #form="ngForm" (ngSubmit)="editUser(user)">
-                    <div class="form-group">
-                    <label for="FirstName">FirstName</label>
-                    <input class="form-control" type="text" name="firstName" [(ngModel)]="user.firstName" placeholder="FirstName" required>
-                    <!--<span class="help-block">Please enter your FirstName</span>-->
-                    </div>
-                    <div class="form-group">
-                    <label for="LastName">LastName</label>
-                    <input class="form-control" type="text" name="lastName" [(ngModel)]="user.lastName" placeholder="LastName" required>
-                    <!--<span class="help-block">Please enter your LastName</span>-->
-                    </div>
-                    <div class="form-group">
-                        <label for="LastName">Username</label>
-                        <input class="form-control" type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="LastName">Email</label>
-                        <input class="form-control" type="text" name="email" [(ngModel)]="user.email" placeholder="Email" required>
-                    </div>
-                    <div class="card-footer">
-                    <button type="submit" [disabled]="!form.form.valid" class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Save</button>
-                    <button class="btn btn-sm btn-danger" (click)="cancelEditing()"><i class="fa fa-ban"></i> Cancel</button>
-                    </div>
-                </form>
-                </div>
-                
-            </div>
-
-
-            <!--<form class="form-inline" #form="ngForm" (ngSubmit)="editUser(user)" style="display:inline">
-              <div class="form-group">
-                  <input class="form-control" type="text" name="firstName" [(ngModel)]="user.firstName" placeholder="FirstName" required>
-              </div>
-              <div class="form-group">
-                <input class="form-control" type="text" name="lastName" [(ngModel)]="user.lastName" placeholder="LastName" required>
-              </div>
-              <div class="form-group">
-                <input class="form-control" type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required>
-              </div>
-              <div class="form-group">
-                <input class="form-control" type="text" name="email" [(ngModel)]="user.email" placeholder="Email" required>
-              </div>
-              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
-            </form>
-            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>-->
-          </td>
-        </tr>
-      </tbody>
     </table>
   </div>
 </div>
 
-<!--<div class="card" *ngIf="!isEditing">
+<div class="card" *ngIf="isEditing">
+    <div class="card-header">
+    <strong>Normal</strong> Form
+    </div>
+    <div class="card-block">
+    <form #form="ngForm" (ngSubmit)="form.form.valid && editUser(user)" novalidate>
+        <div class="form-group">
+        <label for="FirstName">FirstName</label>
+        <input class="form-control" type="text" name="firstName" [(ngModel)]="user.firstName" placeholder="FirstName" required>
+        <!--<span class="help-block">Please enter your FirstName</span>-->
+        </div>
+        <div class="form-group">
+        <label for="LastName">LastName</label>
+        <input class="form-control" type="text" name="lastName" [(ngModel)]="user.lastName" placeholder="LastName" required>
+        <!--<span class="help-block">Please enter your LastName</span>-->
+        </div>
+        <div class="form-group">
+            <label for="LastName">Username</label>
+            <input class="form-control" type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+            <label for="LastName">Email</label>
+            <input class="form-control" type="text" name="email" [(ngModel)]="user.email" placeholder="Email" required>
+        </div>
+        <div class="card-footer">
+        <button type="submit" [disabled]="loading" class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Save</button>
+        <img *ngIf="loading" src="images/loading.gif" />
+        <button class="btn btn-sm btn-danger" (click)="cancelEditing()"><i class="fa fa-ban"></i> Cancel</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+<div class="card" *ngIf="isAdding">
   <h4 class="card-header">Add new User</h4>
   <div class="card-block">
-    <form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
+    <form  (ngSubmit)="f.form.valid && signup(user)" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required placeholder="firstName"/>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required placeholder="firstName"/>
             <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required placeholder="lastName" />
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required placeholder="lastName" />
             <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required placeholder="Username" />
+            <input type="text" class="form-control" name="username" [(ngModel)]="user.username" #username="ngModel" required placeholder="Username" />
             <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <label for="username">Email</label>
-            <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required placeholder="Email" />
+            <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required placeholder="Email" />
             <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="password" />
+            <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" required placeholder="password" />
             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
         </div>
-        <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Register</button>
-            <img *ngIf="loading" src="images/loading.gif" />
-            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+        <div class="card-footer">
+        <button type="submit" [disabled]="loading" class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Save</button>
+        <img *ngIf="loading" src="images/loading.gif" />
+        <button class="btn btn-sm btn-danger" (click)="cancelAdding()"><i class="fa fa-ban"></i> Cancel</button>
         </div>
     </form>
   </div>
-</div>-->
+</div>
