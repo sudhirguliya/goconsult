@@ -82,15 +82,20 @@ export class ProfileComponent implements OnInit {
         this.userService.create(user)
             .subscribe(
                 res => {
+                  const newUser = res.data.user;
+                  this.users.push(newUser);
+                  //this.addCatForm.reset();
                   this.isEditing = false;
                   this.isAdding = false;
                   this.isShow = true;
+                  //console.log(newUser);
                   //const pos = this.users.map(elem => { return elem.id; }).indexOf(user.id);
                   //this.users.unshift(user);
-                  this.loadAllUsers();
+                  //this.loadAllUsers();
                   //console.log(this.users);
+                  this.router.navigate(['/consult/profile']);
                   this.alertService.success('Add user successful', true);
-                  this.router.navigate(['/profile']);
+                  
                 },
                 error => {
                   //console.log(error._body.data.email.message);
@@ -119,17 +124,19 @@ export class ProfileComponent implements OnInit {
     }
 
     deleteUser(user) {
-       //console.log(user.id);
+       //console.log(this.users);
       if (window.confirm('Are you sure you want to permanently delete this item?')) {
         this.userService.delete(user.id).subscribe(
           res => {
-            const pos = this.users.map(elem => { return elem.id; }).indexOf(user.id);
-            this.users.splice(pos, 1);
-            this.isEditing = false;
-            this.isAdding = false;
-            this.isShow = true;
+             const pos = this.users.map(elem => { return elem.id; }).indexOf(user.id);
+             this.users.splice(pos, 1);
+            //  this.isEditing = false;
+            //  this.isAdding = false;
+            //  this.isShow = true;
+            //this.isLoading = true;
             this.alertService.success('item deleted successfully.', true);
-            //this.router.navigate(['/profile']);
+            //this.loadAllUsers();
+            this.router.navigate(['./profile']);
           },
           error => console.log(error)
         );
