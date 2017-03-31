@@ -35,7 +35,7 @@ export class UserService {
         .map((response: Response) => response.json());
     }
 
-    update(user: User) {
+    update(user: User) : Observable<any> {
         return this.http.put('http://127.0.0.1:3000/v1/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
     }
 

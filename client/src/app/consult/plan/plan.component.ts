@@ -1,37 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { User } from '../../_models/index';
-import { UserService, AlertService, AuthenticationService } from '../../_services/index';
+import { Plan } from '../../_models/index';
+import { PlanService, AlertService, AuthenticationService } from '../../_services/index';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-plan',
+  templateUrl: './plan.component.html',
+  styleUrls: ['./plan.component.css'],
+  providers: [PlanService],
 })
-export class ProfileComponent implements OnInit {
+export class PlanComponent implements OnInit {
     public filterQuery = "";
     public rowsOnPage = 10;
     public sortBy = "email";
     public sortOrder = "desc";
     
-    users: User[] = [];
+    plans: Plan[] = [];
     isLoading = true;
 
     user = {};
     isEditing = false;
     isAdding = false;
     isShow = false;
-    currentUser: User;
+    //currentUser: Plan;
     private isVisible = true;
 
-    constructor(private router: Router, private http: Http, private userService: UserService, private alertService: AlertService , private authenticationService: AuthenticationService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    constructor(private router: Router, private http: Http, private planService: PlanService, private alertService: AlertService , private authenticationService: AuthenticationService) {
+       // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
  
     ngOnInit() {
       this.isShow = true;
-      this.loadAllUsers();
+      this.loadAllPlans();
     }
 
   enableEditing(user) {
@@ -54,7 +55,7 @@ export class ProfileComponent implements OnInit {
     this.user = {};
     this.alertService.error('item editing cancelled.', true);
     // reload the cats to reset the editing
-    this.loadAllUsers();
+    this.loadAllPlans();
   }
   cancelAdding() {
     this.isEditing = false;
@@ -63,7 +64,7 @@ export class ProfileComponent implements OnInit {
     this.user = {};
     this.alertService.error('item adding cancelled.', true);
     // reload the cats to reset the editing
-    this.loadAllUsers();
+    this.loadAllPlans();
   }
 
   showall() {
@@ -71,20 +72,19 @@ export class ProfileComponent implements OnInit {
     this.isAdding = false;
     this.isShow = true;
     this.user = {};
-    this.alertService.error('show all users.', true);
+    this.alertService.error('show all plans.', true);
     // reload the cats to reset the editing
-    this.loadAllUsers();
+    this.loadAllPlans();
   }
 
-  signup(user) {
+  addPlan(user) {
     //console.log(user);
         //this.isLoading = true;
-        user.type = 2;
-        this.userService.create(user)
+        this.planService.create(user)
             .subscribe(
                 res => {
-                  const newUser = res.data.user;
-                  this.users.push(newUser);
+                  const newUser = res.data;
+                  this.plans.push(newUser);
                   //this.addCatForm.reset();
                   this.isEditing = false;
                   this.isAdding = false;
@@ -94,8 +94,8 @@ export class ProfileComponent implements OnInit {
                   //this.users.unshift(user);
                   //this.loadAllUsers();
                   //console.log(this.users);
-                  this.router.navigate(['/consult/profile']);
-                  this.alertService.success('Add user successful', true);
+                  this.router.navigate(['/consult/plan']);
+                  this.alertService.success('Add plan successful', true);
                   
                 },
                 error => {
@@ -105,10 +105,9 @@ export class ProfileComponent implements OnInit {
                 });
     }
 
-  editUser(user) {
-    user.type = 2;
+  editPlan(user) {
     //console.log(user);
-    this.userService.update(user).subscribe(
+    this.planService.update(user).subscribe(
       res => {
         this.isEditing = false;
         this.isAdding = false;
@@ -121,36 +120,36 @@ export class ProfileComponent implements OnInit {
   }
  
     viewUser(id: number) {
-        this.userService.getUserById(id).subscribe(users => { 
-                    this.users = users.data;
+        this.planService.getUserById(id).subscribe(plans => { 
+                    this.plans = plans.data;
                 });
     }
 
     deleteUser(user) {
-       //console.log(this.users);
+       //console.log(this.plans);
       if (window.confirm('Are you sure you want to permanently delete this item?')) {
-        this.userService.delete(user.id).subscribe(
+        this.planService.delete(user.id).subscribe(
           res => {
-             const pos = this.users.map(elem => { return elem.id; }).indexOf(user.id);
-             this.users.splice(pos, 1);
+             const pos = this.plans.map(elem => { return elem.id; }).indexOf(user.id);
+             this.plans.splice(pos, 1);
             //  this.isEditing = false;
             //  this.isAdding = false;
             //  this.isShow = true;
             //this.isLoading = true;
             this.alertService.success('item deleted successfully.', true);
             //this.loadAllUsers();
-            this.router.navigate(['./profile']);
+            this.router.navigate(['./consult/plan']);
           },
           error => console.log(error)
         );
       }
     }
  
-    private loadAllUsers() {
-        this.userService.getAll()
-            .subscribe(users => { 
-                    this.users = users.data;
-                    //console.log(this.users);
+    private loadAllPlans() {
+        this.planService.getAll()
+            .subscribe(plans => { 
+                    this.plans = plans.data;
+                    //console.log(this.plans);
                 },
                 error => {
                     if (error.status === 401)

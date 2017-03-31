@@ -42,6 +42,10 @@ module.exports = {
       url: true
     },*/
 
+    type: {
+      type: 'string'
+    },
+
     socialProfiles: {
       type: 'object',
       defaultsTo: {}

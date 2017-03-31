@@ -48,10 +48,10 @@ const appRoutes: Routes = [
          path: 'profile',  canActivate: [AuthGuard], 
          loadChildren: './consult/profile/profile.module#ProfileModule'
        },
-      // {
-      //   path: 'icons',
-      //   loadChildren: './icons/icons.module#IconsModule'
-      // },
+      {
+        path: 'plan', canActivate: [AuthGuard],
+        loadChildren: './consult/plan/plan.module#PlanModule'
+      },
       // {
       //   path: 'widgets',
       //   loadChildren: './widgets/widgets.module#WidgetsModule'
