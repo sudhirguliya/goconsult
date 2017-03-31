@@ -32,7 +32,21 @@ const appRoutes: Routes = [
     redirectTo: 'consult/profile',
     pathMatch: 'full',
   },
-
+  {
+    path: 'category',
+    redirectTo: 'consult/category',
+    pathMatch: 'full',
+  },
+  {
+    path: 'subcategory',
+    redirectTo: 'consult/subcategory',
+    pathMatch: 'full',
+  },
+  {
+    path: 'plan',
+    redirectTo: 'consult/plan',
+    pathMatch: 'full',
+  },
   {
     path: 'consult',
     component: FullLayoutComponent,  canActivate: [AuthGuard],
@@ -48,6 +62,18 @@ const appRoutes: Routes = [
          path: 'profile',  canActivate: [AuthGuard], 
          loadChildren: './consult/profile/profile.module#ProfileModule'
        },
+	   {
+         path: 'category',  canActivate: [AuthGuard], 
+         loadChildren: './consult/category/category.module#CategoryModule'
+       },
+	   {
+         path: 'subcategory',  canActivate: [AuthGuard], 
+         loadChildren: './consult/subcategory/subcategory.module#SubCategoryModule'
+       },
+      // {
+      //   path: 'icons',
+      //   loadChildren: './icons/icons.module#IconsModule'
+      // },
       {
         path: 'plan', canActivate: [AuthGuard],
         loadChildren: './consult/plan/plan.module#PlanModule'

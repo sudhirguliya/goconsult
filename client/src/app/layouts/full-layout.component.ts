@@ -7,8 +7,10 @@ import { ToastComponent } from '../shared/toast/toast.component';
 })
 export class FullLayoutComponent implements OnInit {
 
-  constructor( public toast: ToastComponent ) { }
-
+  
+	constructor( public toast: ToastComponent ) {
+currentUser = JSON.parse(localStorage.getItem('currentUser'));
+		}
   public disabled: boolean = false;
   public status: {isopen: boolean} = {isopen: false};
 

@@ -13,14 +13,34 @@
                 <span class="input-group-addon"><i class="icon-user"></i></span>
                 <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" required>
                 <br/>
-                <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+                <div *ngIf="f.submitted && !email.valid" class="help-block">
+					<div *ngIf="f.submitted && !email.valid && email.untouched" class="help-block">
+						EMAIL is required
+					</div>
+					<div *ngIf="f.submitted && !email.valid && email.errors && email.touched && (email.dirty || email.touched)"
+     class="alert alert-danger" class="help-block">
+					<div [hidden]="!email.errors.required">
+							EMAIL is required
+					</div>
+					</div>
+				</div>
+				
               </div>
               <div class="input-group mb-2" [ngClass]="{ 'has-danger': f.submitted && !password.valid }">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+                <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" minlength=2 required>
                 <br/>
-                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                
               </div>
+			  <div *ngIf="f.submitted && !password.valid" class="help-block">
+					<div *ngIf="f.submitted && !password.valid && password.untouched" class="help-block">
+						Password is required
+					</div>
+					<div *ngIf="f.submitted && !password.valid && password.errors && password.touched && (password.dirty || password.touched)" class="help-block">
+						<div [hidden]="!password.errors.required">Password is required</div>
+						<div [hidden]="!password.errors.minlength">minlenght</div>
+					</div>
+				</div>
               <div class="row">
                 <div class="col-6">
                   <button [disabled]="loading" class="btn btn-sm btn-primary"><i class="fa fa-user"></i> Login</button>
