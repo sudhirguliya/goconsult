@@ -4,6 +4,9 @@ import { contentHeaders } from '../../common/headers';
 
 import { User } from '../_models/index';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class UserService {
     constructor(private http: Http) { }
@@ -16,22 +19,23 @@ export class UserService {
         return this.http.get('http://127.0.0.1:3000/v1/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
-    create(user: User) {
+    create(user: User) : Observable<any>{
         //console.log(user);
         return this.http.post('http://127.0.0.1:3000/v1/auth/signup', user,  { headers: contentHeaders })
-        .map((response: Response) => {
-             // login successful if there's a jwt token in the response
-                let user = response.json();
-                //console.log(user);
-                if (user && user.data.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user.data.user));
-                    localStorage.setItem('token', JSON.stringify(user.data.token));
-                }
-        });
+        // .map((response: Response) => {
+        //      // login successful if there's a jwt token in the response
+        //         let res = response.json();
+        //         //console.log(user);
+        //         if (res && res.data.token) {
+        //             // store user details and jwt token in local storage to keep user logged in between page refreshes
+        //             localStorage.setItem('currentUser', JSON.stringify(res.data.user));
+        //             localStorage.setItem('token', JSON.stringify(res.data.token));
+        //         }
+        // });
+        .map((response: Response) => response.json());
     }
 
-    update(user: User) {
+    update(user: User) : Observable<any> {
         return this.http.put('http://127.0.0.1:3000/v1/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
     }
 

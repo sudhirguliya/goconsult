@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ProfileRoutingModule } from './profile-routing.module';
-import {DataTableModule} from "angular2-datatable";
+import { PlanRoutingModule } from './plan-routing.module';
+import { DataTableModule } from "angular2-datatable";
 import { RouterModule } from '@angular/router';
 
-import { ProfileComponent } from './profile.component';
+import { PlanComponent } from './plan.component';
 
 @NgModule({
   imports: [
@@ -14,10 +14,10 @@ import { ProfileComponent } from './profile.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ProfileRoutingModule,
+    PlanRoutingModule,
     DataTableModule,
     RouterModule
   ],
-  declarations: [ ProfileComponent ]
+  declarations: [ PlanComponent ]
 })
-export class ProfileModule { }
+export class PlanModule { }

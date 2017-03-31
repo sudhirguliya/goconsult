@@ -43,6 +43,11 @@ const appRoutes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'plan',
+    redirectTo: 'consult/plan',
+    pathMatch: 'full',
+  },
+  {
     path: 'consult',
     component: FullLayoutComponent,  canActivate: [AuthGuard],
     data: {
@@ -69,6 +74,10 @@ const appRoutes: Routes = [
       //   path: 'icons',
       //   loadChildren: './icons/icons.module#IconsModule'
       // },
+      {
+        path: 'plan', canActivate: [AuthGuard],
+        loadChildren: './consult/plan/plan.module#PlanModule'
+      },
       // {
       //   path: 'widgets',
       //   loadChildren: './widgets/widgets.module#WidgetsModule'
