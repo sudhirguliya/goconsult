@@ -11,7 +11,8 @@ module.exports = {
   attributes: {
     // Fill your attributes here
     name : {type: "string", unique : true},
-  	status : "boolean",
+  	status_type : "string",
+    subCategory : {collection : "subCategory", via : "parent"},
     toJSON() {
       return this.toObject();
     }
