@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   selector: 'app-plan',
   templateUrl: './plan.component.html',
   styleUrls: ['./plan.component.css'],
-  providers: [PlanService],
 })
 export class PlanComponent implements OnInit {
     public filterQuery = "";

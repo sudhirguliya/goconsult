@@ -8,7 +8,7 @@ import { TabsModule } from 'ng2-bootstrap/tabs';
 
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, PlanService } from './_services/index';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -29,6 +29,7 @@ import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
+import { ToastComponent } from './shared/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
     SignupComponent,
     AlertComponent,
     LogoutComponent,
-    //ProfileComponent,
+    ToastComponent,
     NotFoundComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,
@@ -61,7 +62,8 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
         AlertService,
         AuthenticationService,
         UserService,
-
+        PlanService,
+        ToastComponent
         // providers used to create fake backend
         //fakeBackendProvider,
         //MockBackend,

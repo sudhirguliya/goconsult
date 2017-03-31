@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { User } from '../../_models/index';
 import { UserService, AlertService, AuthenticationService } from '../../_services/index';
+import { ToastComponent } from '../../shared/toast/toast.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,7 +26,7 @@ export class ProfileComponent implements OnInit {
     currentUser: User;
     private isVisible = true;
 
-    constructor(private router: Router, private http: Http, private userService: UserService, private alertService: AlertService , private authenticationService: AuthenticationService) {
+    constructor(private router: Router, private http: Http, private userService: UserService, private alertService: AlertService , public toast: ToastComponent, private authenticationService: AuthenticationService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
  
@@ -52,7 +53,8 @@ export class ProfileComponent implements OnInit {
     this.isAdding = false;
     this.isShow = true;
     this.user = {};
-    this.alertService.error('item editing cancelled.', true);
+    //this.alertService.error('item editing cancelled.', true);
+    this.toast.setMessage('item editing cancelled.', 'warning');
     // reload the cats to reset the editing
     this.loadAllUsers();
   }
@@ -61,7 +63,8 @@ export class ProfileComponent implements OnInit {
     this.isAdding = false;
     this.isShow = true;
     this.user = {};
-    this.alertService.error('item adding cancelled.', true);
+    //this.alertService.error('item adding cancelled.', true);
+    this.toast.setMessage('item adding cancelled.', 'warning');
     // reload the cats to reset the editing
     this.loadAllUsers();
   }
@@ -71,7 +74,8 @@ export class ProfileComponent implements OnInit {
     this.isAdding = false;
     this.isShow = true;
     this.user = {};
-    this.alertService.error('show all users.', true);
+    //this.alertService.error('show all users.', true);
+    this.toast.setMessage('show all users.', 'success');
     // reload the cats to reset the editing
     this.loadAllUsers();
   }
@@ -95,12 +99,14 @@ export class ProfileComponent implements OnInit {
                   //this.loadAllUsers();
                   //console.log(this.users);
                   this.router.navigate(['/consult/profile']);
-                  this.alertService.success('Add user successful', true);
+                  //this.alertService.success('Add user successful', true);
+                  this.toast.setMessage('Add user successful', 'success');
                   
                 },
                 error => {
                   //console.log(error._body.data.email.message);
-                    this.alertService.error(error._body);
+                    //this.alertService.error(error._body);
+                    this.toast.setMessage(error._body, 'error');
                     this.isLoading = false;
                 });
     }
