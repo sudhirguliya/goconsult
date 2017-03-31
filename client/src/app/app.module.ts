@@ -9,7 +9,7 @@ import { TabsModule } from 'ng2-bootstrap/tabs';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 
-import { AlertService, AuthenticationService, UserService , CategoryService,SubCategoryService, PlanService } from './_services/index';
+import { AlertService, AuthenticationService, UserService , CategoryService, SubCategoryService, PlanService } from './_services/index';
 
 
 import { AppComponent } from './app.component';
@@ -65,8 +65,8 @@ import { ToastComponent } from './shared/toast/toast.component';
         AuthenticationService,
         UserService,
         CategoryService,
-		SubCategoryService,
-		PlanService,
+		    SubCategoryService,
+		    PlanService,
         ToastComponent
         // providers used to create fake backend
         //fakeBackendProvider,
