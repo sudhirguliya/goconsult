@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * Plan
- * @description :: Model for storing Plan records
+ * Email_template
+ * @description :: Model for storing Email_template records
  */
 
 module.exports = {
@@ -10,26 +10,21 @@ module.exports = {
 
   attributes: {
     // Fill your attributes here
-    planName: {
+    templateName: {
       type: 'string',
       required: true,
       unique: true,
       alphanumericdashed: true
     },
-
-    price: {
+    templateSubject: {
       type: 'string'
     },
-    timeDuration: {
-      type: 'string'
-    },
-    description: {
+    templateData: {
       type: 'string'
     },
     status: {
       type: 'string'
     },
-
     toJSON() {
       return this.toObject();
     }

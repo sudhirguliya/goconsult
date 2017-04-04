@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { contentHeaders } from '../../common/headers';
-
+import { Router , ActivatedRoute } from '@angular/router';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: Http) { }
+    returnUrl: string;
+    constructor(private http: Http, private router: Router,  private route: ActivatedRoute,) { }
 
     login(email: string, password: string) {
         return this.http.post('http://127.0.0.1:3000/v1/auth/signin', JSON.stringify({ email: email, password: password }), { headers: contentHeaders })
@@ -27,5 +28,13 @@ export class AuthenticationService {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         localStorage.removeItem('token');
+        this.router.navigate([this.returnUrl]);
+    }
+
+    ngOnInit() {
+      
+      // get return url from route parameters or default to '/'
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'login';
+      //console.log(this.returnUrl); 
     }
 }

@@ -70,10 +70,10 @@ const appRoutes: Routes = [
          path: 'subcategory',  canActivate: [AuthGuard], 
          loadChildren: './consult/subcategory/subcategory.module#SubCategoryModule'
        },
-      // {
-      //   path: 'icons',
-      //   loadChildren: './icons/icons.module#IconsModule'
-      // },
+      {
+        path: 'email_template',   canActivate: [AuthGuard],
+        loadChildren: './consult/email_template/email.module#EmailTemplateModule'
+      },
       {
         path: 'plan', canActivate: [AuthGuard],
         loadChildren: './consult/plan/plan.module#PlanModule'

@@ -96,6 +96,9 @@
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/consult/plan']"><i class="fa fa-inr"></i> Plan Details</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/consult/email_template']"><i class="fa fa-envelope-o"></i> Email Template</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/cards']"><i class="icon-puzzle"></i> Cards</a>
             </li>
             <li class="nav-item">
@@ -177,7 +180,7 @@
     </ol>
 
     <div class="container-fluid">
-      <!--<alert></alert>-->
+      <alert></alert>
       <app-toast [message]="toast.message"></app-toast>
       <router-outlet></router-outlet>
     </div><!-- /.conainer-fluid -->
