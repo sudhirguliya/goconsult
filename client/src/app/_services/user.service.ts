@@ -22,7 +22,7 @@ export class UserService {
 
     create(user: User) : Observable<any>{
         //console.log(user);
-        return this.http.post(credentials.host + '/v1/users/', user,  { headers: contentHeaders })
+        return this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders })
         // .map((response: Response) => {
         //      // login successful if there's a jwt token in the response
         //         let res = response.json();
