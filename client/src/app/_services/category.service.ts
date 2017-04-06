@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
-
+import { credentials } from '../_guards/crediential';
 import { Category } from '../_models/index';
 
 @Injectable()
@@ -13,19 +13,19 @@ export class CategoryService {
    
 
 getAll() {
-        return this.http.get('http://127.0.0.1:3000/v1/categories', this.jwt()).map((response: Response) => response.json());
+        return this.http.get(credentials.host + '/v1/categories/', this.jwt()).map((response: Response) => response.json());
     }
 
 	create(category: Category) {
         //console.log(user);
-        return this.http.post('http://127.0.0.1:3000/v1/categories', category, this.jwt())
+        return this.http.post(credentials.host + '/v1/categories/', category, this.jwt())
         .map((response: Response) =>response.json());
     }
 	update(category: Category) {
-        return this.http.put('http://127.0.0.1:3000/v1/categories/'+category.id , category, this.jwt()).map((response: Response) => response.json());
+        return this.http.put(credentials.host + '/v1/categories/'+category.id , category, this.jwt()).map((response: Response) => response.json());
     }
      delete(id: number) {
-        return this.http.delete('http://127.0.0.1:3000/v1/categories/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.delete(credentials.host + '/v1/categories/' + id, this.jwt()).map((response: Response) => response.json());
     }
     
 

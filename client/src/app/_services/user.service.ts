@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
-import {credentials} from '../_guards/crediential'
+import {credentials} from '../_guards/crediential';
 
 import { User } from '../_models/index';
 

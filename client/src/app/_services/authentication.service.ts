@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { contentHeaders } from '../../common/headers';
 import { Router , ActivatedRoute } from '@angular/router';
+import { credentials } from '../_guards/crediential';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
@@ -11,7 +12,7 @@ export class AuthenticationService {
     constructor(private http: Http, private router: Router,  private route: ActivatedRoute,) { }
 
     login(email: string, password: string) {
-        return this.http.post('http://127.0.0.1:3000/v1/auth/signin', JSON.stringify({ email: email, password: password }), { headers: contentHeaders })
+        return this.http.post(credentials.host + '/v1/auth/signin', JSON.stringify({ email: email, password: password }), { headers: contentHeaders })
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
