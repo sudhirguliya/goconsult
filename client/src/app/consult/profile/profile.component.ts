@@ -93,7 +93,7 @@ export class ProfileComponent implements OnInit {
                   this.isEditing = false;
                   this.isAdding = false;
                   this.isShow = true;
-                  //console.log(newUser);
+                  console.log(newUser);
                   //const pos = this.users.map(elem => { return elem.id; }).indexOf(user.id);
                   //this.users.unshift(user);
                   //this.loadAllUsers();
