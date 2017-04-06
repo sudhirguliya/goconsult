@@ -21,18 +21,7 @@ export class UserService {
 
     create(user: User) : Observable<any>{
         //console.log(user);
-        return this.http.post('http://127.0.0.1:3000/v1/auth/signup', user,  { headers: contentHeaders })
-        // .map((response: Response) => {
-        //      // login successful if there's a jwt token in the response
-        //         let res = response.json();
-        //         //console.log(user);
-        //         if (res && res.data.token) {
-        //             // store user details and jwt token in local storage to keep user logged in between page refreshes
-        //             localStorage.setItem('currentUser', JSON.stringify(res.data.user));
-        //             localStorage.setItem('token', JSON.stringify(res.data.token));
-        //         }
-        // });
-        .map((response: Response) => response.json());
+        return this.http.post('http://127.0.0.1:3000/v1/auth/signup', user,  { headers: contentHeaders }).map((response: Response) => response.json());
     }
 
     update(user: User) : Observable<any> {

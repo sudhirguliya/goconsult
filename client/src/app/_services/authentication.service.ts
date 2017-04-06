@@ -28,7 +28,8 @@ export class AuthenticationService {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         localStorage.removeItem('token');
-        this.router.navigate([this.returnUrl]);
+        //this.alertService.success('logout successful, happy to see you', true);
+        this.router.navigate(['/login']);
     }
 
     ngOnInit() {

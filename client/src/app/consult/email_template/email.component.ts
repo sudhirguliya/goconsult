@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class EmailTemplateComponent implements OnInit {
     public filterQuery = "";
     public rowsOnPage = 10;
-    public sortBy = "email";
+    public sortBy = "templateName";
     public sortOrder = "desc";
     
     plans: EmailTemplate[] = [];
@@ -77,7 +77,7 @@ export class EmailTemplateComponent implements OnInit {
     this.isView = false;
     this.isShow = true;
     this.user = {};
-    this.alertService.error('show all plans.', true);
+    this.alertService.success('show all email template.', true);
     // reload the cats to reset the editing
     this.loadAllPlans();
   }
@@ -96,9 +96,6 @@ export class EmailTemplateComponent implements OnInit {
                   this.isView = false;
                   this.isShow = true;
                   //console.log(newUser);
-                  //const pos = this.users.map(elem => { return elem.id; }).indexOf(user.id);
-                  //this.users.unshift(user);
-                  //this.loadAllUsers();
                   //console.log(this.users);
                   this.router.navigate(['/consult/email_template']);
                   this.alertService.success('Add email template successful', true);

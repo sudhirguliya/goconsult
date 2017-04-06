@@ -4,6 +4,7 @@
   "main": "app.js",
   "dependencies": {
     "bluebird": "^3.5.0",
+    "emailjs": "^1.0.8",
     "lodash": "^4.17.4",
     "passport": "^0.3.2",
     "passport-amazon-token": "^2.1.0",
@@ -31,7 +32,8 @@
     "sails-memory": "^0.10.5",
     "sails-mongo": "^0.12.2",
     "sails-service-cipher": "^3.2.1",
-    "sails-service-hash": "^3.2.1"
+    "sails-service-hash": "^3.2.1",
+    "sails-service-mailer": "^3.2.1"
   },
   "devDependencies": {
     "esdoc": "0.4.3",
