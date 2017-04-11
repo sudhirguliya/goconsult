@@ -98,7 +98,7 @@ export class ProfileComponent implements OnInit {
                   //this.users.unshift(user);
                   //this.loadAllUsers();
                   //console.log(this.users);
-                  this.router.navigate(['/consult/profile']);
+                  this.router.navigate(['/admin/profile']);
                   //this.alertService.success('Add user successful', true);
                   this.toast.setMessage('Add user successful', 'success');
                   

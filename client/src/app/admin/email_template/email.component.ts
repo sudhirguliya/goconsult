@@ -1,31 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { Plan } from '../../_models/index';
-import { PlanService, AlertService, AuthenticationService } from '../../_services/index';
+import { EmailTemplate } from '../../_models/index';
+import { EmailTemplateService, AlertService, AuthenticationService } from '../../_services/index';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-plan',
-  templateUrl: './plan.component.html',
-  styleUrls: ['./plan.component.css'],
+  selector: 'app-email',
+  templateUrl: './email.component.html',
+  styleUrls: ['./email.component.css'],
 })
-export class PlanComponent implements OnInit {
+export class EmailTemplateComponent implements OnInit {
     public filterQuery = "";
     public rowsOnPage = 10;
-    public sortBy = "email";
+    public sortBy = "templateName";
     public sortOrder = "desc";
     
-    plans: Plan[] = [];
+    plans: EmailTemplate[] = [];
     isLoading = true;
 
     user = {};
     isEditing = false;
     isAdding = false;
     isShow = false;
+    isView = false
     //currentUser: Plan;
     private isVisible = true;
 
-    constructor(private router: Router, private http: Http, private planService: PlanService, private alertService: AlertService , private authenticationService: AuthenticationService) {
+    constructor(private router: Router, private http: Http, private emailTemplateService: EmailTemplateService, private alertService: AlertService , private authenticationService: AuthenticationService) {
        // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
  
@@ -38,18 +39,21 @@ export class PlanComponent implements OnInit {
     this.isEditing = true;
     this.isAdding = false;
     this.isShow = false;
+    this.isView = false;
     this.user = user;
   }
   enableAdding(user) {
     this.isAdding = true;
     this.isEditing = false;
     this.isShow = false;
+    this.isView = false;
     this.user = { };
   }
 
   cancelEditing() {
     this.isEditing = false;
     this.isAdding = false;
+    this.isView = false;
     this.isShow = true;
     this.user = {};
     this.alertService.error('item editing cancelled.', true);
@@ -59,6 +63,7 @@ export class PlanComponent implements OnInit {
   cancelAdding() {
     this.isEditing = false;
     this.isAdding = false;
+    this.isView = false;
     this.isShow = true;
     this.user = {};
     this.alertService.error('item adding cancelled.', true);
@@ -69,9 +74,10 @@ export class PlanComponent implements OnInit {
   showall() {
     this.isEditing = false;
     this.isAdding = false;
+    this.isView = false;
     this.isShow = true;
     this.user = {};
-    this.alertService.error('show all plans.', true);
+    this.alertService.success('show all email template.', true);
     // reload the cats to reset the editing
     this.loadAllPlans();
   }
@@ -79,7 +85,7 @@ export class PlanComponent implements OnInit {
   addPlan(user) {
     //console.log(user);
         //this.isLoading = true;
-        this.planService.create(user)
+        this.emailTemplateService.create(user)
             .subscribe(
                 res => {
                   const newUser = res.data;
@@ -87,14 +93,12 @@ export class PlanComponent implements OnInit {
                   //this.addCatForm.reset();
                   this.isEditing = false;
                   this.isAdding = false;
+                  this.isView = false;
                   this.isShow = true;
                   //console.log(newUser);
-                  //const pos = this.users.map(elem => { return elem.id; }).indexOf(user.id);
-                  //this.users.unshift(user);
-                  //this.loadAllUsers();
                   //console.log(this.users);
-                  this.router.navigate(['/consult/plan']);
-                  this.alertService.success('Add plan successful', true);
+                  this.router.navigate(['/admin/email_template']);
+                  this.alertService.success('Add email template successful', true);
                   
                 },
                 error => {
@@ -106,10 +110,11 @@ export class PlanComponent implements OnInit {
 
   editPlan(user) {
     //console.log(user);
-    this.planService.update(user).subscribe(
+    this.emailTemplateService.update(user).subscribe(
       res => {
         this.isEditing = false;
         this.isAdding = false;
+        this.isView = false;
         this.isShow = true;
         this.user = user;
         this.alertService.success('item edited successfully.', true);
@@ -121,16 +126,20 @@ export class PlanComponent implements OnInit {
     });
   }
  
-    viewUser(id: number) {
-        this.planService.getUserById(id).subscribe(plans => { 
-                    this.plans = plans.data;
-                });
+    viewUser(temp) {
+        this.isEditing = false;
+        this.isAdding = false;
+        this.isShow = false;
+        this.isView = true;
+        this.emailTemplateService.getUserById(temp.id).subscribe(plans => { 
+          this.user = plans.data;
+        });
     }
 
     deleteUser(user) {
        //console.log(this.plans);
       if (window.confirm('Are you sure you want to permanently delete this item?')) {
-        this.planService.delete(user.id).subscribe(
+        this.emailTemplateService.delete(user.id).subscribe(
           res => {
              const pos = this.plans.map(elem => { return elem.id; }).indexOf(user.id);
              this.plans.splice(pos, 1);
@@ -140,7 +149,7 @@ export class PlanComponent implements OnInit {
             //this.isLoading = true;
             this.alertService.success('item deleted successfully.', true);
             //this.loadAllUsers();
-            this.router.navigate(['./consult/plan']);
+            this.router.navigate(['./admin/plan']);
           },
           error => console.log(error)
         );
@@ -148,7 +157,7 @@ export class PlanComponent implements OnInit {
     }
  
     private loadAllPlans() {
-        this.planService.getAll()
+        this.emailTemplateService.getAll()
             .subscribe(plans => { 
                     this.plans = plans.data;
                     //console.log(this.plans);

@@ -23,60 +23,60 @@ const appRoutes: Routes = [
   // { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   
   {
-    path: 'consult',
-    redirectTo: 'consult/dashboard',
+    path: 'admin',
+    redirectTo: 'admin/dashboard',
     pathMatch: 'full',
   },
   {
     path: 'profile',
-    redirectTo: 'consult/profile',
+    redirectTo: 'admin/profile',
     pathMatch: 'full',
   },
   {
     path: 'category',
-    redirectTo: 'consult/category',
+    redirectTo: 'admin/category',
     pathMatch: 'full',
   },
   {
     path: 'subcategory',
-    redirectTo: 'consult/subcategory',
+    redirectTo: 'admin/subcategory',
     pathMatch: 'full',
   },
   {
     path: 'plan',
-    redirectTo: 'consult/plan',
+    redirectTo: 'admin/plan',
     pathMatch: 'full',
   },
   {
-    path: 'consult',
+    path: 'admin',
     component: FullLayoutComponent,  canActivate: [AuthGuard],
     data: {
-      title: 'Consultant'
+      title: 'Administrator'
     },
     children: [
       {
         path: 'dashboard',  canActivate: [AuthGuard], 
-        loadChildren: './consult/dashboard/dashboard.module#DashboardModule'
+        loadChildren: './admin/dashboard/dashboard.module#DashboardModule'
       },
        {
          path: 'profile',  canActivate: [AuthGuard], 
-         loadChildren: './consult/profile/profile.module#ProfileModule'
+         loadChildren: './admin/profile/profile.module#ProfileModule'
        },
 	   {
          path: 'category',  canActivate: [AuthGuard], 
-         loadChildren: './consult/category/category.module#CategoryModule'
+         loadChildren: './admin/category/category.module#CategoryModule'
        },
 	   {
          path: 'subcategory',  canActivate: [AuthGuard], 
-         loadChildren: './consult/subcategory/subcategory.module#SubCategoryModule'
+         loadChildren: './admin/subcategory/subcategory.module#SubCategoryModule'
        },
       {
         path: 'email_template',   canActivate: [AuthGuard],
-        loadChildren: './consult/email_template/email.module#EmailTemplateModule'
+        loadChildren: './admin/email_template/email.module#EmailTemplateModule'
       },
       {
         path: 'plan', canActivate: [AuthGuard],
-        loadChildren: './consult/plan/plan.module#PlanModule'
+        loadChildren: './admin/plan/plan.module#PlanModule'
       },
       // {
       //   path: 'widgets',
