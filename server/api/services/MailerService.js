@@ -1,13 +1,13 @@
-"use strict";
-
-const MailerService = require('sails-service-mailer');
-
-module.exports = {
-  MailerService: MailerService('sendmail', {
-  from: 'sudhir.se11@gmail.com',
-  subject: 'Hello, there',
-  provider: {
-    path: '/usr/bin/sendmail'
-  }
-})
-};
+module.exports.sendWelcomeMail = function() {
+ sails.hooks.email.send(
+ "welcomeEmail", 
+ {
+ Name: "Sudhir"//obj.name
+ },
+ {
+ to: "sudhir.se11@gmail.com", //obj.email,
+ subject: "Welcome Email"
+ },
+ function(err) {console.log(err || "Mail Sent!");}
+ )
+}

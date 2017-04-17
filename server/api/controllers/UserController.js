@@ -6,6 +6,18 @@
  */
 
 module.exports = {
+   
+ create: function (req, res) {
+//    User.create(req.body).exec(function (err) {
+//      if (err) {
+//        return res.json(err.status, {err: err});
+//      }
+     //if (user) {
+       MailerService.sendWelcomeMail();  // <= Here we using
+       //res.json(200, {user: user});
+     //}
+   //});
+ }
 /*    getAll: function (req, res) {
         User.find().exec(function(err, record) {
         if(err) return err;
