@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
     
     users: User[] = [];
     isLoading = true;
+    loading = false;
 
     user = {};
     isEditing = false;
@@ -82,13 +83,14 @@ export class ProfileComponent implements OnInit {
 
   signup(user) {
     //console.log(user);
-        //this.isLoading = true;
+        this.loading = true;
         user.type = 2;
         this.userService.create(user)
             .subscribe(
                 res => {
-                  const newUser = res.data.user;
+                  const newUser = res.user;
                   this.users.push(newUser);
+                  // console.log(res);
                   //this.addCatForm.reset();
                   this.isEditing = false;
                   this.isAdding = false;
@@ -101,6 +103,7 @@ export class ProfileComponent implements OnInit {
                   this.router.navigate(['/admin/profile']);
                   //this.alertService.success('Add user successful', true);
                   this.toast.setMessage('Add user successful', 'success');
+                  //this.userService.mail(user).subscribe();
                   
                 },
                 error => {

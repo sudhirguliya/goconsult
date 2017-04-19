@@ -13,7 +13,7 @@ export class SubCategoryService {
    
 
 getAll() {
-        return this.http.get(credentials.host + '/v1/subcategories/', this.jwt()).map((response: Response) => response.json());
+        return this.http.get(credentials.host + '/v1/subcategories/getSubCategory', this.jwt()).map((response: Response) => response.json());
     }
 
 	create(category: SubCategory) {
