@@ -160,6 +160,11 @@
             <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" required placeholder="password" />
             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
         </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !file.valid }">
+            <label for="username">File</label>
+            <input type="file" class="form-control" name="file" (change)="fileChange($event)" [(ngModel)]="user.file" #file="ngModel" placeholder="File" />
+            <div *ngIf="f.submitted && !file.valid" class="help-block">File is required</div>
+        </div>
         <div class="card-footer">
             <input class="form-control" type="hidden" name="type" [(ngModel)]="user.type" >
         <button type="submit" [disabled]="loading" class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Save</button>

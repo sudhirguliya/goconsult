@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { User } from '../../_models/index';
 import { UserService, AlertService, AuthenticationService } from '../../_services/index';
 import { ToastComponent } from '../../shared/toast/toast.component';
 import { Router } from '@angular/router';
+
+import {credentials} from '../../_guards/crediential';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 
 @Component({
   selector: 'app-profile',
@@ -82,7 +87,7 @@ export class ProfileComponent implements OnInit {
   }
 
   signup(user) {
-    //console.log(user);
+    console.log(user);
         this.loading = true;
         user.type = 2;
         this.userService.create(user)
@@ -103,7 +108,7 @@ export class ProfileComponent implements OnInit {
                   this.router.navigate(['/admin/profile']);
                   //this.alertService.success('Add user successful', true);
                   this.toast.setMessage('Add user successful', 'success');
-                  //this.userService.mail(user).subscribe();
+                  this.userService.mail(user).subscribe();
                   
                 },
                 error => {
@@ -112,6 +117,41 @@ export class ProfileComponent implements OnInit {
                     this.toast.setMessage(error._body, 'error');
                     this.isLoading = false;
                 });
+    }
+
+    fileChange(event) { 
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+
+        let file: File = fileList[0];
+        let formData:FormData = new FormData();
+        console.log(file);
+        formData.append('file', file, file.name);
+        let headers = new Headers();
+        headers.append('enctype', 'multipart/form-data');
+        headers.append('Accept', 'application/json');
+        console.log(headers);
+        let options = new RequestOptions({ headers: headers });
+        console.log(formData);
+        this.http.post(credentials.host + '/v1/fileuploads/uploadFile', formData, this.jwt())
+            //.map(res => res.json())
+            //.catch(error => Observable.throw(error))
+            .subscribe(
+                res => {
+                 const result = res.json(); //console.log('success'),
+                  console.log(result);
+                }, 
+                error => console.log(error)
+            )
+        }
+    }
+    private jwt() {
+        // create authorization header with jwt token
+        let token = JSON.parse(localStorage.getItem('token'));
+        if (token) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + token });
+            return new RequestOptions({ headers: headers });
+        }
     }
 
   editUser(user) {

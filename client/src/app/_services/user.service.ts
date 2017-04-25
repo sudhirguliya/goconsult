@@ -21,33 +21,32 @@ export class UserService {
         return this.http.get(credentials.host + '/v1/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
-    // create(user: User) {
-        
-    //    return this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders }).map((response: Response) => response.json())
-    //     //this.http.post(credentials.host + '/v1/mails/send', user, this.jwt()).map((response: Response) => response.json())
-    //     //console.log(user);
-    // }
-    //  mail(user: User) {
-    //     console.log(user);
-    //    // this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders }).map((response: Response) => response.json()),
-    //    return  this.http.post(credentials.host + '/v1/mails/send', user, this.jwt()).map((response: Response) => response.json())
-    //     //console.log(user);
-    // }
-    create(user: User): Observable<any> {
+    create(user: User) {
+       return this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders }).map((response: Response) => response.json())
         //console.log(user);
-        var userDetail = user;
-        return Observable.forkJoin([
-            
-            this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders }).map((response: Response) => response.json()),
-            this.http.post(credentials.host + '/v1/emails/send', userDetail, this.jwt()).map((response: Response) => response.json())
-        ])
-        .map((data: any[]) => {
-            let inuser: any = data[0];
-            let mail: any[] = data[1];
-            //console.log(inuser.data);
-            return inuser = inuser.data;
-        });
     }
+     mail(user: User) {
+       // console.log(user);
+       // this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders }).map((response: Response) => response.json()),
+       return  this.http.post(credentials.host + '/v1/emails/send', user, this.jwt()).map((response: Response) => response.json())
+        //console.log(user);
+    }
+    
+    // create(user: User): Observable<any> {
+    //     //console.log(user);
+    //     var userDetail = user;
+    //     return Observable.forkJoin([
+            
+    //         this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders }).map((response: Response) => response.json()),
+    //         this.http.post(credentials.host + '/v1/emails/send', userDetail, this.jwt()).map((response: Response) => response.json())
+    //     ])
+    //     .map((data: any[]) => {
+    //         let inuser: any = data[0];
+    //         let mail: any[] = data[1];
+    //         //console.log(inuser.data);
+    //         return inuser = inuser.data;
+    //     });
+    // }
 
     // create(user: User) : Observable<any>{
     //     //console.log(user);
