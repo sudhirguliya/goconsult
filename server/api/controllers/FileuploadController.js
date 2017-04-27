@@ -8,11 +8,12 @@
 module.exports = {
     uploadFile : function(req, res){
         req.file('file').upload({
-            dirname : '../../../client/src/uploads/'
+            dirname : '../../../client/src/assets/uploads/'
+            //dirname: '../../assets/uploads'
         },function(err, file) {
-            if(err) console.log(err);
+            if(err) {console.log(err)};
             return res.ok();
             //res.json({"status": "File upload successfully", "file": file });
-        })
+        });
     }
 };

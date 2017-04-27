@@ -31,7 +31,21 @@ export class UserService {
        return  this.http.post(credentials.host + '/v1/emails/send', user, this.jwt()).map((response: Response) => response.json())
         //console.log(user);
     }
-    
+    uploadfile(fileList) {
+       //console.log(fileList);
+       if(fileList.length > 0) {
+
+        let file: File = fileList[0];
+        let formData:FormData = new FormData();
+        //console.log(file);
+        formData.append('file', file, file.name);
+        
+        //console.log(formData);
+        return this.http.post(credentials.host + '/v1/fileuploads/uploadFile', formData, this.jwt())
+            .map((response: Response) => response.json())
+            //.catch(error => Observable.throw(error))
+        }
+    }
     // create(user: User): Observable<any> {
     //     //console.log(user);
     //     var userDetail = user;

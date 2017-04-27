@@ -36,11 +36,11 @@ module.exports = {
       defaultsTo: ''
     },
 
-    /*photo: {
+    file: {
       type: 'string',
       defaultsTo: '',
       url: true
-    },*/
+    },
 
     type: {
       type: 'string'
