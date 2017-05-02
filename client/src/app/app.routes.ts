@@ -14,7 +14,7 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
 // Define which component should be loaded based on the current URL
 const appRoutes: Routes = [
-  { path: '',       component: HomeComponent },
+  { path: '',       component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login',  component: LoginComponent},
   { path: 'logout',  component: LogoutComponent},
   { path: 'signup', component: SignupComponent },

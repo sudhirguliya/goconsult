@@ -36,10 +36,10 @@ module.exports = {
       defaultsTo: ''
     },
 
-    file: {
-      type: 'string',
-      defaultsTo: '',
-      url: true
+    photo: {
+      type: 'string'
+      //defaultsTo: '',
+      //url: true
     },
 
     type: {
@@ -49,6 +49,9 @@ module.exports = {
     socialProfiles: {
       type: 'object',
       defaultsTo: {}
+    },
+    address:{
+      type: 'string'
     },
 
     toJSON() {
