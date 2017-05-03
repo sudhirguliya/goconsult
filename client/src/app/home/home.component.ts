@@ -1,4 +1,5 @@
 import { Component, OnInit , HostListener } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
 //import { Document } from '@angular/platform-browser';
@@ -14,6 +15,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 })
 
 export class HomeComponent implements OnInit {
+	returnUrl: string;
     currentUser: User;
     users: User[] = [];
 	private isClassVisible=false;
@@ -21,13 +23,21 @@ export class HomeComponent implements OnInit {
 	private usd= false;
 	private hide = {'sone':false,'stwo':false,'sthree':false,'sfour':false};
 	private showPlus = {'sone':true,'stwo':true,'sthree':true,'sfour':true};
-    constructor(private userService: UserService) {
+    constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
  
     ngOnInit() {
 		
       // this.loadAllUsers();
+	  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'profile';
+      //console.log(this.returnUrl);
+
+      if (localStorage.getItem('token') && localStorage.getItem('token') != 'undefined') {
+            // logged in so return true
+           // not logged in so redirect to login page with the return url
+          this.router.navigate(['/profile']);
+        }
     }
 	 add_header(evt) {
         let currPos = (window.pageYOffset || evt.target.scrollTop) - (evt.target.clientTop || 0);

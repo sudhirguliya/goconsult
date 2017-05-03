@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { User } from '../../_models/index';
 import { UserService, AlertService, AuthenticationService } from '../../_services/index';
@@ -20,11 +20,16 @@ export class ProfileComponent implements OnInit {
     public rowsOnPage = 10;
     public sortBy = "email";
     public sortOrder = "desc";
+
+    public file_srcs: string[] = [];
+    public debug_size_before: string[] = [];
+    public debug_size_after: string[] = [];
     
     users: User[] = [];
     isLoading = true;
     loading = false;
-
+    filesToUpload = [];
+    uploadfile = {};
     user = {};
     isEditing = false;
     isAdding = false;
@@ -32,8 +37,9 @@ export class ProfileComponent implements OnInit {
     currentUser: User;
     private isVisible = true;
 
-    constructor(private router: Router, private http: Http, private userService: UserService, private alertService: AlertService , public toast: ToastComponent, private authenticationService: AuthenticationService) {
+    constructor(private changeDetectorRef: ChangeDetectorRef, private router: Router, private http: Http, private userService: UserService, private alertService: AlertService , public toast: ToastComponent, private authenticationService: AuthenticationService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+         //this.filesToUpload = [];
     }
  
     ngOnInit() {
@@ -87,15 +93,30 @@ export class ProfileComponent implements OnInit {
   }
 
   signup(user) {
-    console.log(user);
         this.loading = true;
         user.type = 2;
-        this.userService.create(user)
+        user.address = "Noida";
+        this.userService.uploadfile(this.filesToUpload).subscribe(
+            file_res => {
+              //console.log(file_res);
+              //console.log(file_res.files.length);
+              if(file_res.files.length > 0){
+                var fileNameArray = file_res.files[0].fd.split("/");
+                var fileName = fileNameArray[fileNameArray.length - 1];
+                //console.log("fileName: ",fileName);
+                user.photo  = fileName;
+              }
+              
+              this.toast.setMessage(file_res.status, 'success');
+            },
+            error=> console.log('error file upload'),
+            () => { 
+              this.userService.create(user)
             .subscribe(
                 res => {
-                  const newUser = res.user;
+                  const newUser = res.data.user;
                   this.users.push(newUser);
-                  // console.log(res);
+                   //console.log(res);
                   //this.addCatForm.reset();
                   this.isEditing = false;
                   this.isAdding = false;
@@ -105,54 +126,27 @@ export class ProfileComponent implements OnInit {
                   //this.users.unshift(user);
                   //this.loadAllUsers();
                   //console.log(this.users);
-                  this.router.navigate(['/admin/profile']);
+                  //this.router.navigate(['/admin/profile']);
                   //this.alertService.success('Add user successful', true);
-                  this.toast.setMessage('Add user successful', 'success');
-                  this.userService.mail(user).subscribe();
+                  //this.userService.mail(user).subscribe();
                   
+                  this.toast.setMessage('Add user successful', 'success');
                 },
                 error => {
                   //console.log(error._body.data.email.message);
                     //this.alertService.error(error._body);
                     this.toast.setMessage(error._body, 'error');
                     this.isLoading = false;
-                });
+                    this.loading = false;
+                },
+                ()=>this.loading = false);
+              }
+            );
     }
 
     fileChange(event) { 
-    let fileList: FileList = event.target.files;
-    if(fileList.length > 0) {
-
-        let file: File = fileList[0];
-        let formData:FormData = new FormData();
-        console.log(file);
-        formData.append('file', file, file.name);
-        let headers = new Headers();
-        headers.append('enctype', 'multipart/form-data');
-        headers.append('Accept', 'application/json');
-        console.log(headers);
-        let options = new RequestOptions({ headers: headers });
-        console.log(formData);
-        this.http.post(credentials.host + '/v1/fileuploads/uploadFile', formData, this.jwt())
-            //.map(res => res.json())
-            //.catch(error => Observable.throw(error))
-            .subscribe(
-                res => {
-                 const result = res.json(); //console.log('success'),
-                  console.log(result);
-                }, 
-                error => console.log(error)
-            )
-        }
-    }
-    private jwt() {
-        // create authorization header with jwt token
-        let token = JSON.parse(localStorage.getItem('token'));
-        if (token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + token });
-            return new RequestOptions({ headers: headers });
-        }
-    }
+    this.filesToUpload = event.target.files;
+  }
 
   editUser(user) {
     user.type = 2;

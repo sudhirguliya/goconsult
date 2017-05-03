@@ -2,7 +2,7 @@ module.exports.email = {
  service: "Gmail",
  auth: {
  user: "sudhirk@unyscape.com", 
- pass: "sudhir@6868"
+ pass: "sudhir"
  },
  templateDir: "api/emailTemplates",
  from: "info@fullstack.com",

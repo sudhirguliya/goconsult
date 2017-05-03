@@ -7,12 +7,16 @@
 
 module.exports = {
     uploadFile : function(req, res){
-        req.file('file').upload({
-            dirname : '../../../client/src/uploads/'
-        },function(err, file) {
-            if(err) console.log(err);
-            return res.ok();
-            //res.json({"status": "File upload successfully", "file": file });
-        })
+        req.file('photo').upload({
+            dirname : '../../../client/src/assets/uploads/'
+            //dirname: '../../assets/uploads'
+        },function(err, files) {
+            if(err) {console.log(err)};
+            //var fileNameArray = files[0].fd.split("/");
+            //var fileName = fileNameArray[fileNameArray.length - 1];
+            //console.log("fileName: ",fileName);
+            //return res.ok();
+            return res.json({"status": "File upload successfully", "files": files });
+        });
     }
 };

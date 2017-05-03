@@ -28,8 +28,9 @@
     </li>
     <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
-        <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-        <span class="hidden-md-down">{{ currentUser.firstName }}{{ currentUser.lastName }}</span>
+        <img *ngIf="currentUser.photo" src="assets/uploads/{{currentUser.photo}}" class="img-avatar" alt="{{currentUser.email}}">
+        <img *ngIf="!currentUser.photo" src="assets/images/user.jpg" class="img-avatar" alt="{{currentUser.email}}" />
+        <span class="hidden-md-down">{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
 
