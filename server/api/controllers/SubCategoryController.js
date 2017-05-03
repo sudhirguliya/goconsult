@@ -6,9 +6,8 @@
  */
 
 module.exports = {
-   
 	getSubCategory : function(req,res){
-         Mailer.sendWelcomeMail();
+        Mailer.sendWelcomeMail();//Mailer.sendWelcomeMail(user);
         var id =req.params.id;
         //console.log(id);
         SubCategory.find({select: ['name']}).populate('parent').exec(function(err, record){

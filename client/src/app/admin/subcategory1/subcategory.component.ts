@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User,Category,SubCategory } from '../../_models/index';
-import { UserService, AlertService, AuthenticationService,SubCategoryService,CategoryService} from '../../_services/index';
+import { User,SubCategory } from '../../_models/index';
+import { UserService, AlertService, AuthenticationService,SubCategoryService} from '../../_services/index';
 import { Router } from '@angular/router';
-import { ToastComponent } from '../../shared/toast/toast.component';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './subcategory.component.html',
@@ -16,7 +16,7 @@ export class SubCategoryComponent implements OnInit {
     
   users: User[] = [];
   isLoading = true;
-  categories: Category[] = [];
+
   user: any = {};
   isEditing = false;
   isAdding = false;
@@ -25,7 +25,7 @@ export class SubCategoryComponent implements OnInit {
     
     private isVisible = true;
  
-    constructor( public toast: ToastComponent, private category : CategoryService,private subcategoryService: SubCategoryService, private userService: UserService, private alertService: AlertService , private authenticationService: AuthenticationService) {
+    constructor( private subcategoryService: SubCategoryService, private userService: UserService, private alertService: AlertService , private authenticationService: AuthenticationService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
  
@@ -36,18 +36,14 @@ export class SubCategoryComponent implements OnInit {
 	{
 		this.isEditing = false;
 		this.isAdding = false;
-     this.loadAllCategory();
 		
 	}
   enableEditing(user) {
-    console.log(user.parent.id)
-    this.loadAllCategoryDrp();
     this.isEditing = true;
     this.isAdding = false;
     this.user = user;
   }
-  enableAdding() {
-	this.loadAllCategoryDrp();
+  enableAdding(user) {
     this.isAdding = true;
     this.isEditing = false;
     this.user = {};
@@ -63,14 +59,11 @@ export class SubCategoryComponent implements OnInit {
   }
 
   editUser(user) {
-    user.parent=user.parent.id;
-    delete user.parent.id;
     this.subcategoryService.update(user).subscribe(
       res => {
         this.isEditing = false;
         this.user = user;
-        this.loadAllCategory();
-        this.toast.setMessage('Sub category is Edited.', 'success');
+        this.alertService.success('item edited successfully.', true);
       },
       error => console.log(error)
     );
@@ -81,7 +74,7 @@ export class SubCategoryComponent implements OnInit {
         this.isEditing = false;
 		    this.isAdding = false;
         this.loadAllCategory();
-        this.toast.setMessage('Sub category is insert.', 'success');
+        this.alertService.success('item add successfully.', true);
       },
       error => console.log(error)
     );
@@ -109,29 +102,13 @@ export class SubCategoryComponent implements OnInit {
       );
     }
   }
-	private loadAllCategoryDrp() {
-      
-        this.category.getAll()
-            .subscribe(users => { 
-                    
-					this.categories = users.data;
-                   // console.log(this.categories);
-                    //console.log(this.users);
-                },
-                error => {
-                    if (error.status === 401)
-                    {                   
-                        this.alertService.error('User with specified credentials is not found', true);
-                        this.authenticationService.logout();
-                    } 
-                },
-                () => this.isLoading = false);
-    }
+ 
     private loadAllCategory() {
       
         this.subcategoryService.getAll()
             .subscribe(users => { 
                     this.users = users.data;
+                    //console.log(this.users);
                 },
                 error => {
                     if (error.status === 401)

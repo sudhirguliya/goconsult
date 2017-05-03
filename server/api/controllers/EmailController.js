@@ -7,7 +7,7 @@
 
 module.exports = {
     send: function(req, res) {
-    console.log(req.body);
+   // console.log(req.body);
     sails.hooks.email.send(
       "welcomeEmail", {
         recipientName: req.body.firstName,

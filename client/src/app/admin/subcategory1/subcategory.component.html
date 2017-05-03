@@ -1,5 +1,5 @@
 <div class="card" *ngIf="!isLoading">
-  <h4 class="card-header">Total Category ({{users.length}})</h4>
+  <h4 class="card-header">Total SubCategory ({{users.length}})</h4>
   <button class="btn btn-sm btn-default" *ngIf="!isEditing && !isAdding" (click)="enableAdding()"><i class="fa fa-times"></i> Add Category</button>
   <button class="btn btn-sm btn-default" *ngIf="isEditing || isAdding" (click)="showListing()"><i class="fa fa-times"></i> Listing</button>
  
@@ -44,9 +44,6 @@
                     <th style="width: 20%">
                         <mfDefaultSorter by="firstName">Category Name</mfDefaultSorter>
                     </th>
-					<th style="width: 20%">
-                        <mfDefaultSorter by="lastName">Parent Name</mfDefaultSorter>
-                    </th>
                     <th style="width: 20%">
                         <mfDefaultSorter by="lastName">Status</mfDefaultSorter>
                     </th>
@@ -69,7 +66,6 @@
       <tbody *ngIf="!isEditing && !isAdding">
         <tr *ngFor="let user of users">
           <td>{{user.name}}</td>
-		  <td>{{user.parent.name ? user.parent.name : '--'}}</td>
           <td>{{user.status_type}}</td>
           <td>
             <button class="btn btn-sm btn-warning" (click)="enableEditing(user)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteUser(user)"><i class="fa fa-trash"></i> Delete</button>
@@ -100,13 +96,6 @@
 							<span style="color:red;" [hidden]="!cat.errors.minlength">Category Name min 4 char.</span>
 						</div>
                     <!--<span class="help-block">Please enter your FirstName</span>-->
-                    </div>
-                    <div class="form-group">
-                    <label for="Status">Category</label>
-                    <select class="form-control" name="category" required #parent="ngModel" [(ngModel)]="user.parent.id">
-						<option  *ngFor="let i of categories" [value]="i.id" [selected]="user.parent.id == i.id">{{i.name}}</option>
-					</select>
-                    
                     </div>
                     <div class="form-group">
                     <label for="LastName">Status</label>
@@ -161,22 +150,13 @@
                 <div class="card-block">
                 <form name="form" (ngSubmit)="f.form.valid && addCategory()" #f="ngForm" novalidate>
                     <div class="form-group">
-                    <label for="FirstName">Sub Category Name</label>
+                    <label for="FirstName">Category Name</label>
                     <input class="form-control" type="text" name="name" [(ngModel)]="user.name" minlength=4 placeholder="Category Name" #cat="ngModel" required>
     
 						<div *ngIf="f.submitted && !cat.valid && cat.errors " class="help-block">
 							<span style="color:red;" [hidden]="!cat.errors.required">category Name is required</span>
 							<span style="color:red;" [hidden]="!cat.errors.minlength">Category Name min 4 char.</span>
 						</div>
-                    </div>
-					<div class="form-group">
-                    <label for="Status">Category</label>
-                    <select class="form-control" name="category" required #parent="ngModel" [(ngModel)]="user.parent">
-						<option [ngValue]="i.id" *ngFor="let i of categories">{{i.name}}</option>
-					</select>
-                    <div *ngIf="f.submitted && !parent.valid && parent.errors " class="help-block">
-							<span style="color:red;" [hidden]="!parent.errors.required">Parent is required</span>
-					</div>
                     </div>
                     <div class="form-group">
                     <label for="Status">Status</label>
