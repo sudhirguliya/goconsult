@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {DataTableModule} from "angular2-datatable";
+import { DataTablesModule } from 'angular-datatables';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 import { TabsModule } from 'ng2-bootstrap/tabs';
 
@@ -10,7 +10,6 @@ import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 
 import { AlertService, AuthenticationService, UserService , CategoryService, SubCategoryService, PlanService } from './_services/index';
-
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -53,7 +52,7 @@ import { ToastComponent } from './shared/toast/toast.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    DataTableModule,
+    DataTablesModule.forRoot(),
     routing,
     DropdownModule.forRoot(),
     TabsModule.forRoot(),

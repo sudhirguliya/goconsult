@@ -8,66 +8,20 @@
   <h4 class="card-header">Current Plans ({{plans.length}})</h4>
   <button *ngIf="isShow" class="btn btn-sm btn-default" (click)="enableAdding()"><i class="fa fa-times"></i> Add Plan</button>
   <button *ngIf="isAdding" class="btn btn-sm btn-default" (click)="showall()"><i class="fa fa-times"></i> All Plan</button>
-  <!--<div class="col-xs-2">
-                <label class="label-control">Rows on page</label>
-                <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
-                    <option [ngValue]="5">5</option>
-                    <option [ngValue]="10">10</option>
-                    <option [ngValue]="15">15</option>
-                </select>
-            </div>
-            <div class="col-xs-4">
-                <div class="row">
-                    <label class="col-xs-12 label-control">Sort by</label>
-                </div>
-                <div class="col-xs-6">
-                    <div class="row">
-                        <select class="form-control input-sm" [(ngModel)]="sortBy">
-                            <option ngValue="name">Name</option>
-                            <option ngValue="email">Email</option>
-                            <option ngValue="age">Age</option>
-                            <option [ngValue]="sortByWordLength">City</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xs-6">
-                    <div class="row">
-                        <select class="form-control input-sm" [(ngModel)]="sortOrder">
-                            <option ngValue="asc">Ascending</option>
-                            <option ngValue="desc">Descending</option>
-                            <option ngValue="badValue">Bad value</option>
-                        </select>
-                    </div>
-                </div>
-            </div>-->
+  
   <div class="card-block" *ngIf="isShow">
       
-    <table class="table table-striped" [mfData]="plans" #mf="mfDataTable"
-                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
-                <thead class="thead-default"  *ngIf="!isEditing">
-                <tr>
-                    <th style="width: 20%">
-                        <mfDefaultSorter by="planName">PlanName</mfDefaultSorter>
-                    </th>
-                    <th style="width: 20%">
-                        <mfDefaultSorter by="price">Price</mfDefaultSorter>
-                    </th>
-                    <th style="width: 20%">
-                        <mfDefaultSorter by="timeDuration">Time Duration  (In Months)</mfDefaultSorter>
-                    </th>
-                    <th style="width: 20%">
-                        <mfDefaultSorter by="status">Status</mfDefaultSorter>
-                    </th>
-                    <th style="width: 20%">Actions</th>
-                </tr>
-                <!--<tr>
-                    <th colspan="5">
-                        Filter by name:
-                        <input class="form-control" [(ngModel)]="filterQuery"/>
-                    </th>
-                </tr>-->
-                </thead>
-                <tbody>
+    <table datatable class="row-border hover">
+        <thead class="thead-default"  *ngIf="!isEditing">
+        <tr>
+            <th>PlanName</th>
+            <th>Price</th>
+            <th>Time Duration  (In Months)</th>
+            <th>Status</th>
+            <th style="width: 20%">Actions</th>
+        </tr>
+        
+        </thead>
     
       <tbody *ngIf="plans.length === 0">
         <tr>
@@ -86,13 +40,7 @@
           </td>
         </tr>  
       </tbody>
-      <tfoot>
-    <tr>
-        <td colspan="5">
-            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-        </td>
-    </tr>
-    </tfoot>
+      
     </table>
   </div>
 </div>

@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EmailTemplateRoutingModule } from './email-routing.module';
-import { DataTableModule } from "angular2-datatable";
+import { DataTablesModule } from "angular-datatables";
 import { RouterModule } from '@angular/router';
 
 import { EmailTemplateComponent } from './email.component';
@@ -16,7 +16,7 @@ import { EmailTemplateService } from '../../_services/index';
     FormsModule,
     ReactiveFormsModule,
     EmailTemplateRoutingModule,
-    DataTableModule,
+   DataTablesModule.forRoot(),
     RouterModule
   ],
   declarations: [ EmailTemplateComponent ],

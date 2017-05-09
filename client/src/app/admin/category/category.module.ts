@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { CategoryComponent } from './category.component';
 import { CategoryRoutingModule } from './category-routing.module';
 import { FormsModule }   from '@angular/forms';
-import {DataTableModule} from "angular2-datatable";
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     CategoryRoutingModule,
-    DataTableModule
+    DataTablesModule.forRoot(),
   ],
   declarations: [CategoryComponent]
 })

@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PlanRoutingModule } from './plan-routing.module';
-import { DataTableModule } from "angular2-datatable";
+import { DataTablesModule } from "angular-datatables";
 import { RouterModule } from '@angular/router';
 
 import { PlanComponent } from './plan.component';
@@ -15,7 +15,7 @@ import { PlanComponent } from './plan.component';
     FormsModule,
     ReactiveFormsModule,
     PlanRoutingModule,
-    DataTableModule,
+    DataTablesModule.forRoot(),
     RouterModule
   ],
   declarations: [ PlanComponent ]

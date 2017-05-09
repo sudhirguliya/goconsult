@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { User } from '../../_models/index';
 import { UserService, AlertService, AuthenticationService } from '../../_services/index';
@@ -16,14 +16,6 @@ import 'rxjs/add/operator/mergeMap';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-    public filterQuery = "";
-    public rowsOnPage = 10;
-    public sortBy = "email";
-    public sortOrder = "desc";
-
-    public file_srcs: string[] = [];
-    public debug_size_before: string[] = [];
-    public debug_size_after: string[] = [];
     
     users: User[] = [];
     isLoading = true;
@@ -37,7 +29,7 @@ export class ProfileComponent implements OnInit {
     currentUser: User;
     private isVisible = true;
 
-    constructor(private changeDetectorRef: ChangeDetectorRef, private router: Router, private http: Http, private userService: UserService, private alertService: AlertService , public toast: ToastComponent, private authenticationService: AuthenticationService) {
+    constructor( private router: Router, private http: Http, private userService: UserService, private alertService: AlertService , public toast: ToastComponent, private authenticationService: AuthenticationService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
          //this.filesToUpload = [];
     }

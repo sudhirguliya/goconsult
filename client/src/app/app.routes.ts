@@ -78,14 +78,39 @@ const appRoutes: Routes = [
         path: 'plan', canActivate: [AuthGuard],
         loadChildren: './admin/plan/plan.module#PlanModule'
       },
-      // {
-      //   path: 'widgets',
-      //   loadChildren: './widgets/widgets.module#WidgetsModule'
-      // },
-      // {
-      //   path: 'charts',
-      //   loadChildren: './chartjs/chartjs.module#ChartJSModule'
-      // }
+    ]
+  },
+  {
+    path: 'consult',
+    component: FullLayoutComponent,  canActivate: [AuthGuard],
+    data: {
+      title: 'Consultant'
+    },
+    children: [
+      {
+        path: 'dashboard',  canActivate: [AuthGuard], 
+        loadChildren: './consult/dashboard/dashboard.module#DashboardModule'
+      },
+       {
+         path: 'profile',  canActivate: [AuthGuard], 
+         loadChildren: './consult/profile/profile.module#ProfileModule'
+       },
+	   {
+         path: 'category',  canActivate: [AuthGuard], 
+         loadChildren: './consult/category/category.module#CategoryModule'
+       },
+	   {
+         path: 'subcategory',  canActivate: [AuthGuard], 
+         loadChildren: './consult/subcategory/subcategory.module#SubCategoryModule'
+       },
+      {
+        path: 'email_template',   canActivate: [AuthGuard],
+        loadChildren: './consult/email_template/email.module#EmailTemplateModule'
+      },
+      {
+        path: 'plan', canActivate: [AuthGuard],
+        loadChildren: './consult/plan/plan.module#PlanModule'
+      },
     ]
   },
   { path: '**',     component: NotFoundComponent },

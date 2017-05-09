@@ -43,12 +43,12 @@ export class UserService {
        return this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders }).map((response: Response) => response.json())
         //console.log(user);
     }
-     mail(user: User) {
-       // console.log(user);
-       // this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders }).map((response: Response) => response.json()),
-       return  this.http.post(credentials.host + '/v1/emails/send', user, this.jwt()).map((response: Response) => response.json())
-        //console.log(user);
-    }
+    //  mail(user: User) {
+    //    // console.log(user);
+    //    // this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders }).map((response: Response) => response.json()),
+    //    return  this.http.post(credentials.host + '/v1/emails/send', user, this.jwt()).map((response: Response) => response.json())
+    //     //console.log(user);
+    // }
     uploadfile(fileList) {
        //console.log(fileList);
        
