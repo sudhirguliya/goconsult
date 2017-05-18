@@ -6,34 +6,34 @@
  */
 
 module.exports = {
-/*    getAll: function (req, res) {
-        User.find().exec(function(err, record) {
-        if(err) return err;
-            res.ok(record);
-            //console.log(record);
-        });
-    },
-    getUserById : function(req,res){
+    showAllUser : function(req,res){
         var id =req.params.id;
-        User.findOne(id).exec(function(err, record){
+        //console.log(id);
+        User.find({where: { type:{ '!' :"1"}}}).exec(function(err, record){
             if(err) return err;
             res.ok(record);
         })
     },
+    showAllConnsultee : function(req,res){
+        var id =req.params.id;
+        //console.log(id);
+        User.find({where: { type: "3"}}).exec(function(err, record){
+            if(err) return err;
+            res.ok(record);
+        })
+    }
+    /* User.find( { type: "1" }).exec(function(err, record){
+            if(err) return err;
+            res.ok(record);
+        })
+         User.find({where: { type: "1" }}).exec(function(err, record){
+            if(err) return err;
+            res.ok(record);
+        })
+        SubCategory.find({select: ['name'],where: { type: "1" }}).populate('parent').exec(function(err, record){
+            if(err) return err;
+            res.ok(record);
+        })*/
 
-    deleteUserId : function(req,res){
-        var id =req.params.id;
-        User.findOneAndRemove(id).exec(function(err, record){
-            if(err) return err;
-            res.ok(record);
-        })
-    },
-
-    updateUserId : function(req,res){
-        var id =req.params.id;
-        User.update({"_id": ObjectId(id)}).exec(function(err, record){
-            if(err) return err;
-            res.ok(record);
-        })
-    }*/
+   
 };

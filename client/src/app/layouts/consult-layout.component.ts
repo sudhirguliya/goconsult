@@ -4,18 +4,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './full-layout.component.html'
+  templateUrl: './consult-layout.component.html'
 })
-export class FullLayoutComponent implements OnInit {
+export class ConsultLayoutComponent implements OnInit {
 
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
-	constructor( public toast: ToastComponent,private router: Router ) { 
-    //console.log(this.currentUser.type);
-    if(this.currentUser.type=='2')
+	constructor( public toast: ToastComponent, private router: Router ) {
+    if(this.currentUser.type=='1')
     {
-      this.router.navigate(["/consult"]);
+      this.router.navigate(["/admin"]);
     }
-  }
+   }
   public disabled: boolean = false;
   public status: {isopen: boolean} = {isopen: false};
 

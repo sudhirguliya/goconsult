@@ -27,7 +27,18 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                   this.alertService.success('login successful', true);
+                 //console.log(data.data);
+                 if (data && data.data.token) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(data.data.user));
+                    localStorage.setItem('token', JSON.stringify(data.data.token));
+                  } 
+
+                 if(data.data.user.type == "1"){
                     this.router.navigate([this.returnUrl]);
+                 }else if (data.data.user.type == "2"){
+                    this.router.navigate(["/consult"]);
+                 }
                 },
                 error => {
                     this.alertService.error(error);

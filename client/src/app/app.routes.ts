@@ -10,7 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component'
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
-import { SimpleLayoutComponent } from './layouts/simple-layout.component';
+import { ConsultLayoutComponent } from './layouts/consult-layout.component';
 
 // Define which component should be loaded based on the current URL
 const appRoutes: Routes = [
@@ -82,7 +82,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'consult',
-    component: FullLayoutComponent,  canActivate: [AuthGuard],
+    component: ConsultLayoutComponent,  canActivate: [AuthGuard],
     data: {
       title: 'Consultant'
     },
@@ -91,26 +91,26 @@ const appRoutes: Routes = [
         path: 'dashboard',  canActivate: [AuthGuard], 
         loadChildren: './consult/dashboard/dashboard.module#DashboardModule'
       },
-       {
+      {
          path: 'profile',  canActivate: [AuthGuard], 
          loadChildren: './consult/profile/profile.module#ProfileModule'
-       },
-	   {
-         path: 'category',  canActivate: [AuthGuard], 
-         loadChildren: './consult/category/category.module#CategoryModule'
-       },
-	   {
-         path: 'subcategory',  canActivate: [AuthGuard], 
-         loadChildren: './consult/subcategory/subcategory.module#SubCategoryModule'
-       },
-      {
-        path: 'email_template',   canActivate: [AuthGuard],
-        loadChildren: './consult/email_template/email.module#EmailTemplateModule'
       },
-      {
-        path: 'plan', canActivate: [AuthGuard],
-        loadChildren: './consult/plan/plan.module#PlanModule'
-      },
+	    // {
+      //    path: 'category',  canActivate: [AuthGuard], 
+      //    loadChildren: './consult/category/category.module#CategoryModule'
+      // },
+	    // {
+      //    path: 'subcategory',  canActivate: [AuthGuard], 
+      //    loadChildren: './consult/subcategory/subcategory.module#SubCategoryModule'
+      // },
+      // {
+      //   path: 'email_template',   canActivate: [AuthGuard],
+      //   loadChildren: './consult/email_template/email.module#EmailTemplateModule'
+      // },
+      // {
+      //   path: 'plan', canActivate: [AuthGuard],
+      //   loadChildren: './consult/plan/plan.module#PlanModule'
+      // },
     ]
   },
   { path: '**',     component: NotFoundComponent },

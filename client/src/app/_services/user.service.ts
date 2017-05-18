@@ -14,7 +14,11 @@ export class UserService {
     constructor(private http: Http) { }
 
     getAll() {
-        return this.http.get(credentials.host + '/v1/users/', this.jwt()).map((response: Response) => response.json());
+        return this.http.get(credentials.host + '/v1/users/showAllUser', this.jwt()).map((response: Response) => response.json());
+    }
+
+    getAllConsultee() {
+        return this.http.get(credentials.host + '/v1/users/showAllConnsultee', this.jwt()).map((response: Response) => response.json());
     }
 
     getUserById(id: number) {
@@ -40,7 +44,7 @@ export class UserService {
         // console.log('path1 is: '+path1);
         // user.file  = path1;
         //console.log(user);
-       return this.http.post(credentials.host + '/v1/auth/signup/', user,  { headers: contentHeaders }).map((response: Response) => response.json())
+       return this.http.post(credentials.host + '/v1/users/', user,  this.jwt()).map((response: Response) => response.json())
         //console.log(user);
     }
     //  mail(user: User) {

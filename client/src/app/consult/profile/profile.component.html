@@ -1,0 +1,126 @@
+<div class="card" *ngIf="isLoading">
+  <h4 class="card-header">Loading...</h4>
+  <div class="card-block text-xs-center">
+    <i class="fa fa-spinner fa-spin fa-3x"></i>
+  </div>
+</div>
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Current users ({{users.length}})</h4>
+  <button *ngIf="isShow" class="btn btn-sm btn-default" (click)="enableAdding()"><i class="fa fa-times"></i> Add User</button>
+  <button *ngIf="isAdding" class="btn btn-sm btn-default" (click)="showall()"><i class="fa fa-times"></i> All User</button>
+
+  <div class="card-block" *ngIf="isShow">
+    <table datatable class="row-border hover">
+      <thead class="thead-default"  *ngIf="!isEditing">
+        <tr>
+            <th>  FirstName </th>
+            <th> LastName </th>
+            <th> Username</th>
+            <th> Email </th>
+            <th>   Photo </th>
+            <th style="width: 20%">Actions</th>
+        </tr>
+      </thead>
+      <!--<tbody *ngIf="users.length === 0">
+        <tr *ngIf="users.length === 0">
+          <td colspan="6">There are no users in the DB. Add a new user below.</td>
+        </tr>  
+      </tbody>-->
+      <tbody *ngIf="!isEditing">
+        <tr *ngFor="let user of users">
+          <td>{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td><img *ngIf="user.photo" src="assets/uploads/{{user.photo}}" height="100px" width="150px" alt="{{user.username}}" />
+            <img *ngIf="!user.photo" src="assets/images/user.jpg" height="100px" width="150px" alt="{{user.username}}" />
+           </td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="enableEditing(user)"><i class="fa fa-pencil"></i> Edit</button> 
+            <button class="btn btn-sm btn-danger" (click)="deleteUser(user)"><i class="fa fa-trash"></i> Delete</button>
+          </td>
+        </tr>  
+      </tbody>
+      
+    </table>
+  </div>
+</div>
+
+<div class="card" *ngIf="isEditing">
+    <div class="card-header">
+    <strong>Update</strong>User Form
+    </div>
+    <div class="card-block">
+    <form #form="ngForm" (ngSubmit)="form.form.valid && editUser(user)" novalidate>
+        <div class="form-group">
+        <label for="FirstName">FirstName</label>
+        <input class="form-control" type="text" name="firstName" [(ngModel)]="user.firstName" placeholder="FirstName" required>
+        <!--<span class="help-block">Please enter your FirstName</span>-->
+        </div>
+        <div class="form-group">
+        <label for="LastName">LastName</label>
+        <input class="form-control" type="text" name="lastName" [(ngModel)]="user.lastName" placeholder="LastName" required>
+        <!--<span class="help-block">Please enter your LastName</span>-->
+        </div>
+        <div class="form-group">
+            <label for="LastName">Username</label>
+            <input class="form-control" type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+            <label for="LastName">Email</label>
+            <input class="form-control" type="text" name="email" [(ngModel)]="user.email" placeholder="Email" required>
+        </div>
+        <div class="card-footer">
+            <input class="form-control" type="hidden" name="type" [(ngModel)]="user.type" >
+        <button type="submit" [disabled]="loading" class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Save</button>
+        <img *ngIf="loading" src="images/loading.gif" />
+        <button class="btn btn-sm btn-danger" (click)="cancelEditing()"><i class="fa fa-ban"></i> Cancel</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+<div class="card" *ngIf="isAdding">
+  <h4 class="card-header">Add new User</h4>
+  <div class="card-block">
+    <form  (ngSubmit)="f.form.valid && signup(user)" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required placeholder="firstName"/>
+            <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required placeholder="lastName" />
+            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="user.username" #username="ngModel" required placeholder="Username" />
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <label for="username">Email</label>
+            <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required placeholder="Email" />
+            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" required placeholder="password" />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+            <label for="username">File</label>
+            <input type="file" class="form-control" name="photo" (change)="fileChange($event)" #photo placeholder="File" />
+            <!--<div *ngIf="f.submitted && !photo.valid" class="help-block">Photo is required</div>-->
+            
+        </div>
+        <div class="card-footer">
+            <input class="form-control" type="hidden" name="type" [(ngModel)]="user.type" >
+        <button type="submit" [disabled]="loading" class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Save</button>
+        <img *ngIf="loading" src="assets/images/loading.gif" />
+        <button class="btn btn-sm btn-danger" (click)="cancelAdding()"><i class="fa fa-ban"></i> Cancel</button>
+        </div>
+    </form>
+  </div>
+</div>

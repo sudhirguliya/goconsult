@@ -22,10 +22,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
-import { SimpleLayoutComponent } from './layouts/simple-layout.component';
+import { ConsultLayoutComponent } from './layouts/consult-layout.component';
 
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
-
+//import { MenuComponent } from './shared/menu.component';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
@@ -42,7 +42,7 @@ import { ToastComponent } from './shared/toast/toast.component';
     ToastComponent,
     NotFoundComponent,
     FullLayoutComponent,
-    SimpleLayoutComponent,
+    ConsultLayoutComponent,
     NAV_DROPDOWN_DIRECTIVES,
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
@@ -65,6 +65,7 @@ import { ToastComponent } from './shared/toast/toast.component';
         CategoryService,
 		    SubCategoryService,
 		    PlanService,
+      //  MenuComponent,
         ToastComponent
         // providers used to create fake backend
         //fakeBackendProvider,
